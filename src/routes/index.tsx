@@ -571,17 +571,51 @@ function Services() {
   const { ref, p } = useSticky();
   const n = SERVICES.length;
   return (
-    <section id="services" ref={ref} className="relative" style={{ height: `${n * 55}vh` }}>
-      <div className="sticky top-0 flex h-svh items-center">
-        <ServicesCartoons />
-        <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-6 sm:gap-8 px-4 sm:px-6 md:grid-cols-[1fr_1.1fr] md:px-10">
-          <div>
-            <p className="eyebrow">Services</p>
-            <h2 className="mt-2 sm:mt-4 text-2xl sm:text-4xl md:text-6xl leading-tight">Support Designed Around Every Child</h2>
-            <Counter p={p} n={n} />
+    <section id="services" className="relative w-full max-w-full box-border">
+      {/* Mobile view: 100% static, natural vertical flow, zero scroll-linked transforms */}
+      <div className="block md:hidden py-14 px-4 sm:px-6 w-full max-w-full box-border">
+        <div className="w-full max-w-xl mx-auto">
+          <p className="eyebrow">Services</p>
+          <h2 className="mt-2 text-2.5xl sm:text-3xl font-semibold leading-tight text-foreground font-display">
+            Support Designed Around Every Child
+          </h2>
+          <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+            Our comprehensive developmental programs are customized to each child's unique strengths and developmental milestones.
+          </p>
+          <div className="mt-8 flex flex-col gap-3 w-full">
+            {SERVICES.map((service, i) => (
+              <div
+                key={service}
+                style={{ background: TINTS[i % TINTS.length] }}
+                className="w-full rounded-[1.25rem] border-2 border-foreground p-4 sm:p-5 shadow-[4px_4px_0_var(--color-foreground)] flex items-center justify-between gap-4 box-border"
+              >
+                <div className="flex items-center gap-3.5 min-w-0">
+                  <span className="font-display text-2xl font-bold opacity-80 shrink-0">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="text-base sm:text-lg font-semibold leading-snug text-foreground break-words">
+                    {service}
+                  </h3>
+                </div>
+              </div>
+            ))}
           </div>
-          <div className="relative mx-auto h-[38svh] sm:h-[46svh] md:h-[52svh] min-h-[240px] sm:min-h-[290px] w-full max-w-lg">
-            {SERVICES.map((_, i) => <ServiceCard key={i} p={p} i={i} n={n} />)}
+        </div>
+      </div>
+
+      {/* Desktop view: Original interactive sticky stack animation preserved 100% */}
+      <div ref={ref} className="hidden md:block relative" style={{ height: `${n * 55}vh` }}>
+        <div className="sticky top-0 flex h-svh items-center">
+          <ServicesCartoons />
+          <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-6 sm:gap-8 px-6 md:grid-cols-[1fr_1.1fr] md:px-10">
+            <div>
+              <p className="eyebrow">Services</p>
+              <h2 className="mt-2 sm:mt-4 text-2xl sm:text-4xl md:text-6xl leading-tight">Support Designed Around Every Child</h2>
+              <Counter p={p} n={n} />
+            </div>
+            <div className="relative mx-auto h-[38svh] sm:h-[46svh] md:h-[52svh] min-h-[240px] sm:min-h-[290px] w-full max-w-lg">
+              {SERVICES.map((_, i) => <ServiceCard key={i} p={p} i={i} n={n} />)}
+            </div>
           </div>
         </div>
       </div>
@@ -668,39 +702,106 @@ function Programs() {
   const { ref, p } = useSticky();
   const n = PROGRAMS.length;
   return (
-    <section id="programs" ref={ref} className="relative" style={{ height: `${n * 60}vh` }}>
-      <div className="sticky top-0 flex h-svh flex-col justify-center gap-4 sm:gap-6 px-4 sm:px-6 md:gap-8 md:px-10">
-        <ProgramsCartoons />
-        <div className="relative z-10 mx-auto w-full max-w-5xl">
+    <section id="programs" className="relative w-full max-w-full box-border">
+      {/* Mobile view: 100% static, natural vertical flow, zero 3D transforms */}
+      <div className="block md:hidden py-14 px-4 sm:px-6 w-full max-w-full box-border">
+        <div className="w-full max-w-xl mx-auto">
           <p className="eyebrow">Our Programs</p>
-          <div className="mt-2 flex flex-wrap items-end justify-between gap-3 md:mt-3">
+          <h2 className="mt-2 text-2.5xl sm:text-3xl font-semibold leading-tight text-foreground font-display">
+            Every Child Has Their Own Journey
+          </h2>
+          <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+            Our specialized services are organized into focused pathways to support each child's development.
+          </p>
+          <div className="mt-8 flex flex-col gap-5 w-full">
+            {PROGRAMS.map((prog, i) => (
+              <div
+                key={prog.t}
+                style={{ background: TINTS[i % TINTS.length] }}
+                className="w-full rounded-[1.5rem] border-2 border-foreground p-5 shadow-[4px_4px_0_var(--color-foreground)] flex flex-col gap-4 box-border"
+              >
+                <div className="flex items-center justify-between gap-2">
+                  <span className="font-display text-lg font-bold opacity-75">
+                    Pathway 0{i + 1}
+                  </span>
+                  <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full border border-foreground bg-white/80 shadow-xs">
+                    Jack & Jane
+                  </span>
+                </div>
+                <div>
+                  <h3 className="font-display text-xl font-semibold text-foreground leading-tight">
+                    {prog.t}
+                  </h3>
+                  <div className="mt-3 flex flex-wrap gap-1.5">
+                    {prog.s.map((sub) => (
+                      <span
+                        key={sub}
+                        className="rounded-full border border-foreground bg-white/95 px-2.5 py-1 text-xs font-bold text-foreground shadow-xs"
+                      >
+                        {sub}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                {prog.img && (
+                  <div className="relative w-full aspect-[16/10] overflow-hidden rounded-xl border-2 border-foreground bg-muted shadow-[3px_3px_0_var(--color-foreground)] mt-1">
+                    <img
+                      src={prog.img}
+                      alt={prog.alt ?? prog.t}
+                      onError={(e) => {
+                        const current = e.currentTarget.src;
+                        if (current.includes("/assets/images/")) {
+                          e.currentTarget.src = current.replace("/assets/images/", "/images/");
+                        } else if (current.includes("/images/")) {
+                          e.currentTarget.src = current.replace("/images/", "/assets/images/");
+                        }
+                      }}
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop view: Original interactive 3D sticky slider preserved 100% */}
+      <div ref={ref} className="hidden md:block relative" style={{ height: `${n * 60}vh` }}>
+        <div className="sticky top-0 flex h-svh flex-col justify-center gap-4 sm:gap-6 px-4 sm:px-6 md:gap-8 md:px-10">
+          <ProgramsCartoons />
+          <div className="relative z-10 mx-auto w-full max-w-5xl">
+            <p className="eyebrow">Our Programs</p>
+            <div className="mt-2 flex flex-wrap items-end justify-between gap-3 md:mt-3">
+              <ScrollReveal
+                as="h2"
+                containerClassName="max-w-xl"
+                textClassName="text-2.5xl sm:text-3xl md:text-5xl leading-tight font-semibold text-foreground font-display"
+                baseOpacity={0.15}
+                enableBlur={true}
+                baseRotation={2}
+                blurStrength={3}
+              >
+                Every Child Has Their Own Journey
+              </ScrollReveal>
+              <Counter p={p} n={n} />
+            </div>
             <ScrollReveal
-              as="h2"
-              containerClassName="max-w-xl"
-              textClassName="text-2.5xl sm:text-3xl md:text-5xl leading-tight font-semibold text-foreground font-display"
+              as="p"
+              containerClassName="mt-1.5 sm:mt-2 max-w-lg"
+              textClassName="text-xs sm:text-sm md:text-base text-muted-foreground"
               baseOpacity={0.15}
               enableBlur={true}
               baseRotation={2}
               blurStrength={3}
             >
-              Every Child Has Their Own Journey
+              Our specialized services are organized into focused pathways to support each child's development.
             </ScrollReveal>
-            <Counter p={p} n={n} />
           </div>
-          <ScrollReveal
-            as="p"
-            containerClassName="mt-1.5 sm:mt-2 max-w-lg"
-            textClassName="text-xs sm:text-sm md:text-base text-muted-foreground"
-            baseOpacity={0.15}
-            enableBlur={true}
-            baseRotation={2}
-            blurStrength={3}
-          >
-            Our specialized services are organized into focused pathways to support each child's development.
-          </ScrollReveal>
-        </div>
-        <div className="relative mx-auto h-[48svh] min-h-[340px] sm:min-h-[380px] max-h-[460px] w-full max-w-5xl [perspective:1200px] md:min-h-[420px]">
-          {PROGRAMS.map((_, i) => <ProgramSlide key={i} p={p} i={i} n={n} />)}
+          <div className="relative mx-auto h-[48svh] min-h-[340px] sm:min-h-[380px] max-h-[460px] w-full max-w-5xl [perspective:1200px] md:min-h-[420px]">
+            {PROGRAMS.map((_, i) => <ProgramSlide key={i} p={p} i={i} n={n} />)}
+          </div>
         </div>
       </div>
     </section>
@@ -726,24 +827,69 @@ function Approach() {
   const { ref, p } = useSticky();
   const bg = useTransform(p, [0, 0.33, 0.66, 1], STAGE_BG);
   const clip = useTransform(p, [0, 0.15], ["circle(18% at 50% 55%)", "circle(75% at 50% 55%)"]);
+
+  const STAGE_DESCS = [
+    "Comprehensive assessment of your child's developmental profile, milestones, and daily routines.",
+    "Individualized therapeutic intervention plan crafted in close collaboration with parents.",
+    "Active, play-based skill building across speech, sensory regulation, behavior, and cognitive learning.",
+    "Celebrating milestones, fostering independence, and preparing for school and social success."
+  ];
+
   return (
-    <section id="approach" ref={ref} className="relative h-[320vh]">
-      <div className="sticky top-0 flex h-svh flex-col items-center justify-center px-4 sm:px-6">
-        <ApproachCartoons />
-        <motion.div style={{ background: bg, clipPath: clip, opacity: 0.55 }} className="absolute inset-0" />
-        <div className="absolute top-16 sm:top-24 text-center px-4">
+    <section id="approach" className="relative w-full max-w-full box-border">
+      {/* Mobile view: 100% static, natural vertical flow, zero 320vh height, zero clip-path scrub */}
+      <div className="block md:hidden py-14 px-4 sm:px-6 w-full max-w-full box-border">
+        <div className="w-full max-w-xl mx-auto text-center">
           <p className="eyebrow">Our Approach</p>
-          <h2 className="mt-1 sm:mt-2 text-2.5xl sm:text-3xl md:text-4xl font-semibold">Our Approach</h2>
+          <h2 className="mt-2 text-2.5xl sm:text-3xl font-semibold text-foreground font-display">
+            A Compassionate, Structured Roadmap
+          </h2>
+          <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+            Every milestone is nurtured with specialized clinical care, gentle patience, and continuous family support.
+          </p>
+          <div className="mt-8 flex flex-col gap-3.5 text-left w-full">
+            {STAGES.map((stage, i) => (
+              <div
+                key={stage}
+                style={{ background: STAGE_BG[i % STAGE_BG.length] }}
+                className="w-full rounded-[1.25rem] border-2 border-foreground p-4 sm:p-5 shadow-[4px_4px_0_var(--color-foreground)] flex items-start gap-3.5 box-border"
+              >
+                <span className="font-display text-2xl font-bold opacity-80 shrink-0 mt-0.5">
+                  0{i + 1}
+                </span>
+                <div>
+                  <h3 className="font-display text-lg font-semibold text-foreground leading-snug">
+                    {stage}
+                  </h3>
+                  <p className="text-xs text-foreground/80 font-medium mt-1 leading-relaxed">
+                    {STAGE_DESCS[i]}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="relative grid h-44 sm:h-48 w-full place-items-center">
-          {STAGES.map((_, i) => <Stage key={i} p={p} i={i} />)}
+      </div>
+
+      {/* Desktop view: Original interactive circle clip-path sticky experience preserved 100% */}
+      <div ref={ref} className="hidden md:block relative h-[320vh]">
+        <div className="sticky top-0 flex h-svh flex-col items-center justify-center px-4 sm:px-6">
+          <ApproachCartoons />
+          <motion.div style={{ background: bg, clipPath: clip, opacity: 0.55 }} className="absolute inset-0" />
+          <div className="absolute top-16 sm:top-24 text-center px-4">
+            <p className="eyebrow">Our Approach</p>
+            <h2 className="mt-1 sm:mt-2 text-2.5xl sm:text-3xl md:text-4xl font-semibold">Our Approach</h2>
+          </div>
+          <div className="relative grid h-44 sm:h-48 w-full place-items-center">
+            {STAGES.map((_, i) => <Stage key={i} p={p} i={i} />)}
+          </div>
+          <div className="absolute bottom-14 sm:bottom-16 flex items-center gap-3 text-xs sm:text-sm font-bold">
+            {STAGES.map((s, i) => (
+              <StageDot key={s} p={p} i={i} label={s} />
+            ))}
+          </div>
+          <ApproachCount p={p} />
         </div>
-        <div className="absolute bottom-14 sm:bottom-16 flex items-center gap-3 text-xs sm:text-sm font-bold">
-          {STAGES.map((s, i) => (
-            <StageDot key={s} p={p} i={i} label={s} />
-          ))}
-        </div>
-        <ApproachCount p={p} />
       </div>
     </section>
   );

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useMemo, type ReactNode } from "react";
+import React, { useEffect, useRef, useMemo, useState, type ReactNode } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./ScrollReveal.css";
@@ -38,6 +38,14 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
   as = "h2",
 }) => {
   const containerRef = useRef<HTMLElement | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   const splitText = useMemo(() => {
     const text = typeof children === "string" ? children : "";
@@ -57,17 +65,9 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
     const el = containerRef.current;
     if (!el) return;
 
-    // Check if on mobile view (< 768px)
-    // On mobile screens, disable continuous scrub and blur filters during scroll
-    // to keep mobile scrolling 100% natural, smooth, and free of jitter/vibration.
-    const isMobile = window.innerWidth < 768;
-    if (isMobile) {
-      const words = el.querySelectorAll(".word");
-      words.forEach((w) => {
-        (w as HTMLElement).style.opacity = "1";
-        (w as HTMLElement).style.filter = "none";
-        (w as HTMLElement).style.transform = "none";
-      });
+    // On mobile screens (<= 768px), completely disable GSAP ScrollTrigger & transforms
+    // to prevent any scroll jitter, vibration, or layout shifting.
+    if (typeof window !== "undefined" && window.innerWidth <= 768) {
       return;
     }
 
@@ -145,9 +145,20 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
     rotationEnd,
     wordAnimationEnd,
     blurStrength,
+    isMobile,
   ]);
 
   const Tag = as as keyof JSX.IntrinsicElements;
+
+  if (isMobile) {
+    return (
+      <Tag className={`scroll-reveal-static w-full max-w-full box-border ${containerClassName}`}>
+        <span className={`block w-full max-w-full ${textClassName}`}>
+          {children}
+        </span>
+      </Tag>
+    );
+  }
 
   return (
     <Tag

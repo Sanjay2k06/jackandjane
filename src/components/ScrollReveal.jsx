@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useMemo } from 'react';
+import React, { useEffect, useRef, useMemo, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './ScrollReveal.css';
@@ -22,6 +22,14 @@ export const ScrollReveal = ({
   as: Component = "h2",
 }) => {
   const containerRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   const splitText = useMemo(() => {
     const text = typeof children === "string" ? children : "";
@@ -41,17 +49,9 @@ export const ScrollReveal = ({
     const el = containerRef.current;
     if (!el) return;
 
-    // Check if on mobile view (< 768px)
-    // On mobile screens, disable continuous scrub and blur filters during scroll
-    // to keep mobile scrolling 100% natural, smooth, and free of jitter/vibration.
-    const isMobile = window.innerWidth < 768;
-    if (isMobile) {
-      const words = el.querySelectorAll(".word");
-      words.forEach((w) => {
-        w.style.opacity = "1";
-        w.style.filter = "none";
-        w.style.transform = "none";
-      });
+    // On mobile screens (<= 768px), completely disable GSAP ScrollTrigger & transforms
+    // to prevent any scroll jitter, vibration, or layout shifting.
+    if (typeof window !== "undefined" && window.innerWidth <= 768) {
       return;
     }
 
@@ -129,7 +129,18 @@ export const ScrollReveal = ({
     rotationEnd,
     wordAnimationEnd,
     blurStrength,
+    isMobile,
   ]);
+
+  if (isMobile) {
+    return (
+      <Component className={`scroll-reveal-static w-full max-w-full box-border ${containerClassName}`}>
+        <span className={`block w-full max-w-full ${textClassName}`}>
+          {children}
+        </span>
+      </Component>
+    );
+  }
 
   return (
     <Component
