@@ -190,24 +190,24 @@ function Nav() {
   };
   return (
     <header className="fixed inset-x-0 top-0 z-[100] border-b border-border/50 bg-background shadow-xs">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 md:px-10">
-        <button onClick={() => pick("hero")} className="group flex items-center gap-3 text-left" aria-label="Back to top">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-3 py-2.5 sm:px-6 sm:py-3 md:px-10">
+        <button onClick={() => pick("hero")} className="group flex items-center gap-2 sm:gap-3 text-left" aria-label="Back to top">
           <img
             src="/assets/images/logo.jpeg"
             alt="Jack and Jane Developmental Centre Logo"
-            className="h-11 w-11 rounded-full object-cover shadow-[0_2px_8px_rgba(0,0,0,0.12)] ring-1 ring-foreground/20 transition-transform duration-300 group-hover:scale-105"
+            className="h-9 w-9 sm:h-11 sm:w-11 rounded-full object-cover shadow-[0_2px_8px_rgba(0,0,0,0.12)] ring-1 ring-foreground/20 transition-transform duration-300 group-hover:scale-105"
           />
           <span className="leading-tight">
-            <span className="block font-display text-base sm:text-lg font-semibold">Jack & Jane</span>
-            <span className="block text-[0.55rem] sm:text-[0.6rem] font-extrabold tracking-[0.2em] text-muted-foreground">DEVELOPMENTAL CENTRE</span>
+            <span className="block font-display text-sm sm:text-lg font-semibold">Jack & Jane</span>
+            <span className="block text-[0.5rem] sm:text-[0.6rem] font-extrabold tracking-[0.16em] sm:tracking-[0.2em] text-muted-foreground">DEVELOPMENTAL CENTRE</span>
           </span>
         </button>
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-3">
           <a
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn bg-primary text-primary-foreground text-xs sm:text-sm px-3.5 py-2 sm:px-4 sm:py-2.5 inline-flex items-center gap-1.5 shadow-sm hover:opacity-95"
+            className="btn bg-primary text-primary-foreground text-[11px] sm:text-sm px-2.5 py-1.5 sm:px-4 sm:py-2.5 inline-flex items-center gap-1 sm:gap-1.5 shadow-sm hover:opacity-95"
             aria-label="Admissions Open - Chat on WhatsApp"
           >
             <span>Admissions Open</span>
@@ -216,7 +216,7 @@ function Nav() {
           <button
             onClick={() => setOpen((o) => !o)}
             aria-expanded={open}
-            className="btn border border-foreground/20 bg-card/80 backdrop-blur text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-2.5"
+            className="btn border border-foreground/20 bg-card/80 backdrop-blur text-[11px] sm:text-sm px-2.5 py-1.5 sm:px-4 sm:py-2.5"
           >
             {open ? "CLOSE" : "MENU"}
           </button>
@@ -330,42 +330,42 @@ function useIndex(p: MotionValue<number>, n: number) {
 function Hero() {
   const m = useMouse();
   return (
-    <section id="hero" className="relative flex min-h-svh flex-col justify-center pt-28 pb-16 md:pt-36 md:pb-24">
+    <section id="hero" className="relative flex min-h-svh flex-col justify-center pt-24 pb-12 sm:pt-28 sm:pb-16 md:pt-36 md:pb-24">
       <HeroCartoons />
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-10 px-5 md:grid-cols-[1.2fr_1fr] md:px-10">
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-8 px-4 sm:px-6 md:gap-10 md:grid-cols-[1.2fr_1fr] md:px-10">
         <div>
-          <h1 className="text-5xl font-semibold leading-[1.02] md:text-7xl lg:text-[5.5rem]">
+          <h1 className="text-3.5xl font-semibold leading-[1.04] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem]">
             <Reveal text="Helping Children Reach" />
             <br />
             <Reveal text="Their Full" />
             <em className="text-primary">Potential.</em>
           </h1>
-          <p className="mt-6 max-w-md text-lg text-muted-foreground">
+          <p className="mt-4 sm:mt-6 max-w-md text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed">
             Specialized support and developmental programs designed to help every child learn, grow and thrive.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <button onClick={() => go("about")} className="btn bg-secondary text-secondary-foreground">Explore Our Centre</button>
+          <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row flex-wrap gap-2.5 sm:gap-3">
+            <button onClick={() => go("about")} className="btn bg-secondary text-secondary-foreground text-xs sm:text-sm px-4 py-2.5 justify-center text-center">Explore Our Centre</button>
             <a
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn bg-primary text-primary-foreground inline-flex items-center gap-2"
+              className="btn bg-primary text-primary-foreground inline-flex items-center justify-center gap-2 text-xs sm:text-sm px-4 py-2.5 text-center"
             >
               Admissions Open — Get Started
             </a>
           </div>
-          <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold">
+          <div className="mt-8 sm:mt-10 flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-2 text-xs sm:text-sm font-semibold">
             <span>Palavakkam · Neelankarai</span>
             <span className="text-muted-foreground">Hours: {HOURS}</span>
             <a href={TEL} className="underline decoration-primary decoration-2 underline-offset-4">{PHONE}</a>
           </div>
         </div>
-        <div className="relative mx-auto flex w-full max-w-lg items-center justify-center lg:max-w-xl">
-          <div className="relative w-full overflow-hidden rounded-[2rem] border-2 border-foreground bg-card shadow-[8px_8px_0_var(--color-foreground)] transition-transform duration-300 hover:-translate-y-1">
+        <div className="relative mx-auto flex w-full max-w-md sm:max-w-lg items-center justify-center lg:max-w-xl">
+          <div className="relative w-full overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border-2 border-foreground bg-card shadow-[6px_6px_0_var(--color-foreground)] sm:shadow-[8px_8px_0_var(--color-foreground)] transition-transform duration-300 hover:-translate-y-1">
             <img
               src="/assets/images/hero_image.jpeg"
               alt="Jack & Jane Developmental Centre Children Learning & Growth"
-              className="h-auto w-full max-h-[460px] object-contain"
+              className="h-auto w-full max-h-[300px] sm:max-h-[380px] md:max-h-[460px] object-contain"
               loading="eager"
             />
           </div>
@@ -410,16 +410,16 @@ const GALLERY_ITEMS = [
 function About() {
   const m = useMouse();
   return (
-    <section id="about" className="relative py-28 md:py-40">
+    <section id="about" className="relative py-16 sm:py-24 md:py-36">
       <AboutCartoons />
-      <Float m={m} depth={40} className="right-[8%] top-16 w-16 md:w-24"><Puzzle /></Float>
-      <Float m={m} depth={25} className="bottom-12 left-[6%] w-20 md:w-28"><Plane /></Float>
-      <Float m={m} depth={55} className="right-[22%] bottom-10 w-10 md:w-14"><Star /></Float>
-      <div className="relative mx-auto max-w-4xl px-5 text-center">
+      <Float m={m} depth={40} className="right-[8%] top-16 w-12 sm:w-16 md:w-24 hidden sm:block"><Puzzle /></Float>
+      <Float m={m} depth={25} className="bottom-12 left-[6%] w-16 sm:w-20 md:w-28 hidden sm:block"><Plane /></Float>
+      <Float m={m} depth={55} className="right-[22%] bottom-10 w-8 sm:w-10 md:w-14 hidden sm:block"><Star /></Float>
+      <div className="relative mx-auto max-w-4xl px-4 sm:px-6 text-center">
         <p className="eyebrow font-black text-xs sm:text-sm tracking-[0.24em]">
           <strong className="font-black">About Jack & Jane</strong>
         </p>
-        <h2 className="mt-5 text-4xl leading-tight md:text-6xl">
+        <h2 className="mt-3 sm:mt-5 text-2.5xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight font-semibold">
           <Reveal text="Helping Children Grow With Confidence" />
         </h2>
         <motion.p
@@ -427,14 +427,14 @@ function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5, duration: 0.8 }}
-          className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground"
+          className="mx-auto mt-4 sm:mt-6 max-w-xl text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed"
         >
           We provide specialized support and developmental programs for children to help them reach their full potential.
         </motion.p>
       </div>
 
-      <div className="relative mx-auto mt-16 max-w-7xl px-5 md:px-10">
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="relative mx-auto mt-10 sm:mt-16 max-w-7xl px-4 sm:px-6 md:px-10">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 sm:gap-6">
           {GALLERY_ITEMS.map((item, idx) => (
             <motion.div
               key={item.title}
@@ -480,10 +480,10 @@ function ServiceCard({ p, i, n }: { p: MotionValue<number>; i: number; n: number
   return (
     <motion.article
       style={{ y, scale, rotate, opacity, zIndex: i, background: TINTS[i % TINTS.length]! }}
-      className="absolute inset-0 flex flex-col justify-between rounded-[2rem] border-2 border-foreground p-8 shadow-[8px_8px_0_var(--color-foreground)] md:p-12"
+      className="absolute inset-0 flex flex-col justify-between rounded-[1.5rem] sm:rounded-[2rem] border-2 border-foreground p-5 sm:p-8 md:p-12 shadow-[6px_6px_0_var(--color-foreground)] sm:shadow-[8px_8px_0_var(--color-foreground)]"
     >
-      <span className="font-display text-7xl md:text-9xl">{String(i + 1).padStart(2, "0")}</span>
-      <h3 className="text-3xl leading-tight md:text-5xl">{SERVICES[i]}</h3>
+      <span className="font-display text-5xl sm:text-7xl md:text-9xl">{String(i + 1).padStart(2, "0")}</span>
+      <h3 className="text-xl sm:text-3xl md:text-5xl leading-tight">{SERVICES[i]}</h3>
     </motion.article>
   );
 }
@@ -495,13 +495,13 @@ function Services() {
     <section id="services" ref={ref} className="relative" style={{ height: `${n * 55}vh` }}>
       <div className="sticky top-0 flex h-svh items-center">
         <ServicesCartoons />
-        <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-8 px-5 md:grid-cols-[1fr_1.1fr] md:px-10">
+        <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-6 sm:gap-8 px-4 sm:px-6 md:grid-cols-[1fr_1.1fr] md:px-10">
           <div>
             <p className="eyebrow">Services</p>
-            <h2 className="mt-4 text-4xl leading-tight md:text-6xl">Support Designed Around Every Child</h2>
+            <h2 className="mt-2 sm:mt-4 text-2xl sm:text-4xl md:text-6xl leading-tight">Support Designed Around Every Child</h2>
             <Counter p={p} n={n} />
           </div>
-          <div className="relative mx-auto h-[42svh] w-full max-w-lg md:h-[52svh]">
+          <div className="relative mx-auto h-[38svh] sm:h-[46svh] md:h-[52svh] min-h-[240px] sm:min-h-[290px] w-full max-w-lg">
             {SERVICES.map((_, i) => <ServiceCard key={i} p={p} i={i} n={n} />)}
           </div>
         </div>
@@ -543,23 +543,23 @@ function ProgramSlide({ p, i, n }: { p: MotionValue<number>; i: number; n: numbe
   return (
     <motion.article
       style={{ rotateY, x, z, scale, opacity }}
-      className="absolute inset-0 grid items-center gap-6 overflow-hidden rounded-[2rem] border-2 border-foreground bg-card p-6 shadow-[8px_8px_0_var(--color-foreground)] md:grid-cols-[1.2fr_1fr] md:p-8 lg:p-10"
+      className="absolute inset-0 grid items-center gap-4 sm:gap-6 overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border-2 border-foreground bg-card p-4 sm:p-6 md:grid-cols-[1.2fr_1fr] md:p-8 lg:p-10 shadow-[6px_6px_0_var(--color-foreground)] sm:shadow-[8px_8px_0_var(--color-foreground)]"
     >
       <div className="flex flex-col justify-center">
-        <span className="font-display text-4xl text-primary md:text-5xl">{String(i + 1).padStart(2, "0")}</span>
-        <h3 className="mt-2 text-xl font-bold leading-tight sm:text-2xl md:text-3xl lg:text-4xl">{prog.t}</h3>
-        <ul className="mt-3 space-y-2 md:mt-5">
+        <span className="font-display text-2.5xl sm:text-4xl text-primary md:text-5xl">{String(i + 1).padStart(2, "0")}</span>
+        <h3 className="mt-1 sm:mt-2 text-lg font-bold leading-tight sm:text-2xl md:text-3xl lg:text-4xl">{prog.t}</h3>
+        <ul className="mt-2 sm:mt-3 space-y-1.5 sm:space-y-2 md:mt-5">
           {prog.s.map((s) => (
-            <li key={s} className="flex items-center gap-2.5 text-xs font-semibold sm:text-sm md:text-base">
-              <span className="h-2 w-2 shrink-0 rounded-full bg-primary" />
+            <li key={s} className="flex items-center gap-2 sm:gap-2.5 text-xs font-semibold sm:text-sm md:text-base">
+              <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 shrink-0 rounded-full bg-primary" />
               {s}
             </li>
           ))}
         </ul>
       </div>
-      <div className="mx-auto flex h-full max-h-[270px] w-full items-center justify-center md:max-h-[300px]">
+      <div className="mx-auto flex h-full max-h-[160px] sm:max-h-[240px] md:max-h-[300px] w-full items-center justify-center">
         {prog.img ? (
-          <div className="relative h-full max-h-[240px] w-auto aspect-[3/4] overflow-hidden rounded-2xl border-2 border-foreground bg-muted shadow-[5px_5px_0_var(--color-foreground)] sm:max-h-[260px] md:max-h-[280px]">
+          <div className="relative h-full max-h-[150px] sm:max-h-[220px] md:max-h-[280px] w-auto aspect-[3/4] overflow-hidden rounded-xl sm:rounded-2xl border-2 border-foreground bg-muted shadow-[4px_4px_0_var(--color-foreground)] sm:shadow-[5px_5px_0_var(--color-foreground)]">
             <img
               src={prog.img}
               alt={prog.alt ?? prog.t}
@@ -582,19 +582,19 @@ function Programs() {
   const n = PROGRAMS.length;
   return (
     <section id="programs" ref={ref} className="relative" style={{ height: `${n * 60}vh` }}>
-      <div className="sticky top-0 flex h-svh flex-col justify-center gap-6 px-5 md:gap-8 md:px-10">
+      <div className="sticky top-0 flex h-svh flex-col justify-center gap-4 sm:gap-6 px-4 sm:px-6 md:gap-8 md:px-10">
         <ProgramsCartoons />
         <div className="relative z-10 mx-auto w-full max-w-5xl">
           <p className="eyebrow">Our Programs</p>
-          <div className="mt-2 flex flex-wrap items-end justify-between gap-4 md:mt-3">
-            <h2 className="max-w-xl text-3xl leading-tight md:text-5xl">Every Child Has Their Own Journey</h2>
+          <div className="mt-2 flex flex-wrap items-end justify-between gap-3 md:mt-3">
+            <h2 className="max-w-xl text-2.5xl sm:text-3xl md:text-5xl leading-tight font-semibold">Every Child Has Their Own Journey</h2>
             <Counter p={p} n={n} />
           </div>
-          <p className="mt-2 max-w-lg text-sm text-muted-foreground md:mt-3 md:text-base">
+          <p className="mt-1.5 sm:mt-2 max-w-lg text-xs sm:text-sm md:text-base text-muted-foreground">
             Our specialized services are organized into focused pathways to support each child's development.
           </p>
         </div>
-        <div className="relative mx-auto h-[48svh] min-h-[380px] max-h-[460px] w-full max-w-5xl [perspective:1200px] md:min-h-[420px]">
+        <div className="relative mx-auto h-[48svh] min-h-[340px] sm:min-h-[380px] max-h-[460px] w-full max-w-5xl [perspective:1200px] md:min-h-[420px]">
           {PROGRAMS.map((_, i) => <ProgramSlide key={i} p={p} i={i} n={n} />)}
         </div>
       </div>
@@ -611,7 +611,7 @@ function Stage({ p, i }: { p: MotionValue<number>; i: number }) {
   const scale = useTransform(d, [-0.6, 0, 0.6], [0.7, 1, 1.25]);
   const y = useTransform(d, [-0.6, 0, 0.6], [60, 0, -60]);
   return (
-    <motion.h3 style={{ opacity, scale, y }} className="absolute text-6xl font-semibold sm:text-8xl md:text-[10rem]">
+    <motion.h3 style={{ opacity, scale, y }} className="absolute text-4xl sm:text-6xl md:text-8xl lg:text-[10rem] font-semibold text-center tracking-tight px-4">
       {STAGES[i]}
     </motion.h3>
   );
@@ -623,17 +623,17 @@ function Approach() {
   const clip = useTransform(p, [0, 0.15], ["circle(18% at 50% 55%)", "circle(75% at 50% 55%)"]);
   return (
     <section id="approach" ref={ref} className="relative h-[320vh]">
-      <div className="sticky top-0 flex h-svh flex-col items-center justify-center px-5">
+      <div className="sticky top-0 flex h-svh flex-col items-center justify-center px-4 sm:px-6">
         <ApproachCartoons />
         <motion.div style={{ background: bg, clipPath: clip, opacity: 0.55 }} className="absolute inset-0" />
-        <div className="absolute top-24 text-center">
+        <div className="absolute top-16 sm:top-24 text-center px-4">
           <p className="eyebrow">Our Approach</p>
-          <h2 className="mt-2 text-3xl md:text-4xl">Our Approach</h2>
+          <h2 className="mt-1 sm:mt-2 text-2.5xl sm:text-3xl md:text-4xl font-semibold">Our Approach</h2>
         </div>
-        <div className="relative grid h-48 w-full place-items-center">
+        <div className="relative grid h-44 sm:h-48 w-full place-items-center">
           {STAGES.map((_, i) => <Stage key={i} p={p} i={i} />)}
         </div>
-        <div className="absolute bottom-16 flex items-center gap-3 text-sm font-bold">
+        <div className="absolute bottom-14 sm:bottom-16 flex items-center gap-3 text-xs sm:text-sm font-bold">
           {STAGES.map((s, i) => (
             <StageDot key={s} p={p} i={i} label={s} />
           ))}
@@ -662,16 +662,16 @@ const seq = (i: number) => ({
 
 function Centres() {
   return (
-    <section id="centres" className="relative pt-16 pb-12 md:pt-24 md:pb-16">
+    <section id="centres" className="relative pt-14 pb-10 sm:pt-20 sm:pb-14 md:pt-24 md:pb-16">
       <CentresCartoons />
-      <div className="relative z-10 mx-auto max-w-6xl px-5 md:px-10">
-        <div className="mb-8 md:mb-10">
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 md:px-10">
+        <div className="mb-6 sm:mb-8 md:mb-10">
           <p className="eyebrow">Our Centres</p>
-          <div className="mt-3 flex flex-wrap items-end justify-between gap-4">
-            <h2 className="max-w-2xl text-4xl leading-tight md:text-5xl">
+          <div className="mt-2 sm:mt-3 flex flex-wrap items-end justify-between gap-3 sm:gap-4">
+            <h2 className="max-w-2xl text-2.5xl sm:text-4xl md:text-5xl leading-tight font-semibold">
               Palavakkam & Neelankarai
             </h2>
-            <p className="text-sm font-semibold text-muted-foreground">
+            <p className="text-xs sm:text-sm font-semibold text-muted-foreground">
               Hours: <span className="text-foreground font-bold">{HOURS}</span> · Phone:{" "}
               <a href={TEL} className="underline decoration-primary underline-offset-4 text-foreground font-bold">
                 {PHONE}
@@ -692,24 +692,24 @@ function Contact() {
   return (
     <section id="contact" className="relative pt-12 md:pt-16">
       <ContactCartoons />
-      <motion.div {...seq(0)} className="relative z-10 mx-auto max-w-6xl px-5 md:px-10">
-        <h2 className="text-4xl md:text-6xl">Get In Touch</h2>
-        <a href={TEL} className="mt-6 block font-display text-5xl text-primary md:text-8xl">{PHONE}</a>
-        <p className="mt-4 text-lg font-semibold">Palavakkam · Neelankarai <span className="text-muted-foreground">— {HOURS}</span></p>
+      <motion.div {...seq(0)} className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 md:px-10">
+        <h2 className="text-3xl sm:text-4xl md:text-6xl font-semibold">Get In Touch</h2>
+        <a href={TEL} className="mt-4 sm:mt-6 block font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-primary break-all sm:break-normal">{PHONE}</a>
+        <p className="mt-3 sm:mt-4 text-base sm:text-lg font-semibold">Palavakkam · Neelankarai <span className="text-muted-foreground">— {HOURS}</span></p>
       </motion.div>
-      <motion.footer {...seq(1)} className="relative z-10 mx-auto mt-20 flex max-w-6xl flex-wrap items-end justify-between gap-6 border-t-2 border-foreground px-5 py-10 text-sm md:px-10">
-        <div className="flex items-center gap-3.5">
+      <motion.footer {...seq(1)} className="relative z-10 mx-auto mt-16 sm:mt-20 flex max-w-6xl flex-col sm:flex-row flex-wrap items-start sm:items-end justify-between gap-6 border-t-2 border-foreground px-4 sm:px-6 md:px-10 py-8 sm:py-10 text-xs sm:text-sm">
+        <div className="flex items-center gap-3">
           <img
             src="/assets/images/logo.jpeg"
             alt="Jack and Jane Developmental Centre Logo"
-            className="h-12 w-12 rounded-full object-cover ring-1 ring-foreground/20 shadow-xs"
+            className="h-10 w-10 sm:h-12 sm:w-12 rounded-full object-cover ring-1 ring-foreground/20 shadow-xs"
           />
           <div>
-            <p className="font-display text-2xl font-semibold">JACK & JANE</p>
-            <p className="text-[0.65rem] font-extrabold tracking-[0.2em] text-muted-foreground">DEVELOPMENTAL CENTRE</p>
+            <p className="font-display text-xl sm:text-2xl font-semibold">JACK & JANE</p>
+            <p className="text-[0.6rem] sm:text-[0.65rem] font-extrabold tracking-[0.2em] text-muted-foreground">DEVELOPMENTAL CENTRE</p>
           </div>
         </div>
-        <p className="font-semibold">Palavakkam · Neelankarai · {HOURS} · {PHONE}</p>
+        <p className="font-semibold text-muted-foreground sm:text-foreground">Palavakkam · Neelankarai · {HOURS} · {PHONE}</p>
         <p className="w-full text-muted-foreground">© {new Date().getFullYear()} Jack & Jane Developmental Centre</p>
       </motion.footer>
     </section>

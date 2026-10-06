@@ -98,14 +98,14 @@ export function HeroCartoons() {
         rotation="5deg"
         sizeClass="w-12 h-12 xl:w-15 xl:h-15"
       />
-      {/* Outer Left Margin subtle mobile/tablet accent */}
+      {/* Outer Left Mid: Ponpon (extra wide viewport margin accent) */}
       <FloatingCartoon
         cartoonId={5}
-        className="absolute left-4 sm:left-6 top-24 block lg:hidden"
+        className="absolute left-6 xl:left-12 2xl:left-20 top-1/2 -translate-y-1/2 hidden 2xl:block"
         animClass="float-anim-2"
         delay="1.6s"
         rotation="4deg"
-        sizeClass="w-10 h-10 sm:w-12 sm:h-12"
+        sizeClass="w-12 h-12 xl:w-16 xl:h-16"
       />
     </>
   );
@@ -152,14 +152,14 @@ export function AboutCartoons() {
         rotation="-5deg"
         sizeClass="w-12 h-12 xl:w-15 xl:h-15"
       />
-      {/* Outer Margin subtle mobile/tablet accent */}
+      {/* Outer Right Mid: Kawaii Sticker (extra wide viewport margin accent) */}
       <FloatingCartoon
         cartoonId={10}
-        className="absolute right-4 sm:right-6 top-20 block lg:hidden"
+        className="absolute right-6 xl:right-12 2xl:right-20 top-1/2 -translate-y-1/2 hidden 2xl:block"
         animClass="float-anim-1"
         delay="2.8s"
         rotation="-4deg"
-        sizeClass="w-10 h-10 sm:w-12 sm:h-12"
+        sizeClass="w-12 h-12 xl:w-16 xl:h-16"
       />
     </>
   );

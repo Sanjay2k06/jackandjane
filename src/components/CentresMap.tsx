@@ -282,7 +282,7 @@ export function CentresMap() {
                 <div
                   key={centre.id}
                   onClick={() => setSelectedId(centre.id)}
-                  className={`group relative cursor-pointer rounded-2xl border-2 p-5 transition-all duration-200 ${
+                  className={`group relative cursor-pointer rounded-2xl border-2 p-4 sm:p-5 transition-all duration-200 ${
                     isSelected
                       ? "border-foreground bg-card shadow-[4px_4px_0_var(--color-foreground)] ring-2 ring-primary"
                       : "border-border bg-card/70 hover:border-foreground/60 hover:bg-card"
@@ -370,7 +370,7 @@ export function CentresMap() {
         </div>
 
         {/* Right Side: Interactive Minimal Light Map */}
-        <div className="relative h-[440px] w-full overflow-hidden rounded-[2rem] border-2 border-foreground bg-[#f5f2eb] shadow-[6px_6px_0_var(--color-foreground)] md:h-[480px] lg:h-full lg:min-h-[480px]">
+        <div className="relative h-[340px] sm:h-[420px] md:h-[480px] lg:h-full lg:min-h-[480px] w-full overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border-2 border-foreground bg-[#f5f2eb] shadow-[5px_5px_0_var(--color-foreground)] sm:shadow-[6px_6px_0_var(--color-foreground)]">
           {/* Leaflet container with minimal light map tiles */}
           <div ref={mapContainerRef} className="minimal-light-map z-0 h-full w-full" />
 
@@ -401,8 +401,8 @@ export function CentresMap() {
           </div>
 
           {/* Compact Location Card anchored on the map */}
-          <div className="pointer-events-none absolute bottom-4 left-4 right-4 z-[400] sm:bottom-6 sm:left-6 sm:right-auto sm:max-w-sm">
-            <div className="pointer-events-auto rounded-2xl border-2 border-foreground bg-card p-4 shadow-[6px_6px_0_var(--color-foreground)] backdrop-blur-xs transition-all duration-300">
+          <div className="pointer-events-none absolute bottom-3 left-3 right-3 z-[400] sm:bottom-6 sm:left-6 sm:right-auto sm:max-w-sm">
+            <div className="pointer-events-auto rounded-xl sm:rounded-2xl border-2 border-foreground bg-card p-3 sm:p-4 shadow-[5px_5px_0_var(--color-foreground)] sm:shadow-[6px_6px_0_var(--color-foreground)] backdrop-blur-xs transition-all duration-300">
               <div className="flex items-start justify-between gap-2">
                 <div>
                   <span className="inline-block text-[10px] font-extrabold uppercase tracking-wider text-primary">

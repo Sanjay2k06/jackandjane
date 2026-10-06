@@ -122,6 +122,10 @@ export default defineConfig({
       "@tanstack/query-core",
     ],
   },
+  server: {
+    host: true,
+    port: 5173,
+  },
   optimizeDeps: {
     include: ["leaflet"],
   },
