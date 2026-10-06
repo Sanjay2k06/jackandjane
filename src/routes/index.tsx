@@ -81,6 +81,8 @@ const PROGRAMS: ProgramItem[] = [
   {
     t: "Learning",
     s: ["IQ Boosting Program", "School Readiness Program"],
+    img: "/assets/images/learning-program.jpeg",
+    alt: "School readiness and cognitive skill enhancement sessions",
   },
   {
     t: "Social & Behavioural Development",
@@ -97,6 +99,8 @@ const PROGRAMS: ProgramItem[] = [
   {
     t: "Parent Support",
     s: ["Parent Counseling & Guidance"],
+    img: "/assets/images/parent-support.jpeg",
+    alt: "Parent counseling and family guidance collaborative session",
   },
 ];
 const STAGES = ["Understand", "Support", "Develop", "Grow"];
@@ -195,6 +199,14 @@ function Nav() {
           <img
             src="/assets/images/logo.jpeg"
             alt="Jack and Jane Developmental Centre Logo"
+            onError={(e) => {
+              const current = e.currentTarget.src;
+              if (current.includes("/assets/images/")) {
+                e.currentTarget.src = current.replace("/assets/images/", "/images/");
+              } else if (current.includes("/images/")) {
+                e.currentTarget.src = current.replace("/images/", "/assets/images/");
+              }
+            }}
             className="h-9 w-9 sm:h-11 sm:w-11 rounded-full object-cover shadow-[0_2px_8px_rgba(0,0,0,0.12)] ring-1 ring-foreground/20 transition-transform duration-300 group-hover:scale-105"
           />
           <span className="leading-tight">
@@ -365,6 +377,14 @@ function Hero() {
             <img
               src="/assets/images/hero_image.jpeg"
               alt="Jack & Jane Developmental Centre Children Learning & Growth"
+              onError={(e) => {
+                const current = e.currentTarget.src;
+                if (current.includes("/assets/images/")) {
+                  e.currentTarget.src = current.replace("/assets/images/", "/images/");
+                } else if (current.includes("/images/")) {
+                  e.currentTarget.src = current.replace("/images/", "/assets/images/");
+                }
+              }}
               className="h-auto w-full max-h-[300px] sm:max-h-[380px] md:max-h-[460px] object-contain"
               loading="eager"
             />
@@ -404,6 +424,20 @@ const GALLERY_ITEMS = [
     badge: "Active Growth",
     tint: "var(--color-butter)",
   },
+  {
+    src: "/assets/images/parent-support.jpeg",
+    title: "Parent Guidance & Counseling",
+    desc: "Collaborative counseling empowering families with home routines and developmental milestones.",
+    badge: "Parent Support",
+    tint: "var(--color-blush)",
+  },
+  {
+    src: "/assets/images/learning-program.jpeg",
+    title: "School Readiness & IQ Boosting",
+    desc: "Structured cognitive milestones and foundational learning for academic and social confidence.",
+    badge: "School Readiness",
+    tint: "var(--color-sky)",
+  },
 ];
 
 /* ---------- 2. About ---------- */
@@ -434,7 +468,7 @@ function About() {
       </div>
 
       <div className="relative mx-auto mt-10 sm:mt-16 max-w-7xl px-4 sm:px-6 md:px-10">
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 sm:gap-6">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 sm:gap-6">
           {GALLERY_ITEMS.map((item, idx) => (
             <motion.div
               key={item.title}
@@ -448,8 +482,16 @@ function About() {
                 <img
                   src={item.src}
                   alt={item.title}
+                  onError={(e) => {
+                    const current = e.currentTarget.src;
+                    if (current.includes("/assets/images/")) {
+                      e.currentTarget.src = current.replace("/assets/images/", "/images/");
+                    } else if (current.includes("/images/")) {
+                      e.currentTarget.src = current.replace("/images/", "/assets/images/");
+                    }
+                  }}
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
+                  loading="eager"
                 />
                 <span
                   style={{ background: item.tint }}
@@ -563,12 +605,20 @@ function ProgramSlide({ p, i, n }: { p: MotionValue<number>; i: number; n: numbe
             <img
               src={prog.img}
               alt={prog.alt ?? prog.t}
+              onError={(e) => {
+                const current = e.currentTarget.src;
+                if (current.includes("/assets/images/")) {
+                  e.currentTarget.src = current.replace("/assets/images/", "/images/");
+                } else if (current.includes("/images/")) {
+                  e.currentTarget.src = current.replace("/images/", "/assets/images/");
+                }
+              }}
               className="h-full w-full object-cover"
-              loading="lazy"
+              loading="eager"
             />
           </div>
         ) : (
-          <div className="mx-auto hidden max-h-[220px] w-36 md:block md:w-44" style={{ filter: "drop-shadow(6px 6px 0 var(--color-accent))" }}>
+          <div className="mx-auto flex max-h-[150px] sm:max-h-[220px] md:max-h-[280px] w-28 sm:w-36 md:w-44 items-center justify-center" style={{ filter: "drop-shadow(6px 6px 0 var(--color-accent))" }}>
             {PROGRAM_ART[i]}
           </div>
         )}
@@ -702,6 +752,14 @@ function Contact() {
           <img
             src="/assets/images/logo.jpeg"
             alt="Jack and Jane Developmental Centre Logo"
+            onError={(e) => {
+              const current = e.currentTarget.src;
+              if (current.includes("/assets/images/")) {
+                e.currentTarget.src = current.replace("/assets/images/", "/images/");
+              } else if (current.includes("/images/")) {
+                e.currentTarget.src = current.replace("/images/", "/assets/images/");
+              }
+            }}
             className="h-10 w-10 sm:h-12 sm:w-12 rounded-full object-cover ring-1 ring-foreground/20 shadow-xs"
           />
           <div>

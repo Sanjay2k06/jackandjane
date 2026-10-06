@@ -12,9 +12,11 @@ function autoSyncCartoonsPlugin(): Plugin {
     try {
       const srcDir = resolve(__dirname, "cartoon_image");
       const destDir = resolve(__dirname, "public/assets/cartoons");
+      const destDir2 = resolve(__dirname, "public/cartoons");
       const dataDir = resolve(__dirname, "src/data");
       if (!fs.existsSync(srcDir)) return;
       if (!fs.existsSync(destDir)) fs.mkdirSync(destDir, { recursive: true });
+      if (!fs.existsSync(destDir2)) fs.mkdirSync(destDir2, { recursive: true });
       if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
 
       const files = fs
@@ -29,12 +31,19 @@ function autoSyncCartoonsPlugin(): Plugin {
         const cleanName = `cartoon-${String(idx + 1).padStart(2, "0")}${ext}`;
         const srcPath = resolve(srcDir, f);
         const destCleanPath = resolve(destDir, cleanName);
+        const destCleanPath2 = resolve(destDir2, cleanName);
 
         if (
           !fs.existsSync(destCleanPath) ||
           fs.statSync(srcPath).mtimeMs > fs.statSync(destCleanPath).mtimeMs
         ) {
           fs.copyFileSync(srcPath, destCleanPath);
+        }
+        if (
+          !fs.existsSync(destCleanPath2) ||
+          fs.statSync(srcPath).mtimeMs > fs.statSync(destCleanPath2).mtimeMs
+        ) {
+          fs.copyFileSync(srcPath, destCleanPath2);
         }
 
         let cleanTitle = f
