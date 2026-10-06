@@ -159,35 +159,35 @@ export function ServicesCartoons() {
     <>
       <FloatingCartoon
         cartoonId={11}
-        className="absolute left-2.5 sm:left-4 md:left-6 xl:left-12 2xl:left-18 top-16 sm:top-20 md:top-28"
+        className="absolute left-2 sm:left-4 md:left-6 xl:left-12 2xl:left-18 top-12 sm:top-20 md:top-28"
         animClass="float-anim-1"
         delay="0.5s"
         rotation="3deg"
       />
       <FloatingCartoon
         cartoonId={12}
-        className="absolute left-3 sm:left-6 md:left-8 xl:left-16 2xl:left-24 bottom-16 sm:bottom-20 md:bottom-28"
+        className="absolute left-2 sm:left-6 md:left-8 xl:left-16 2xl:left-24 bottom-3 sm:bottom-20 md:bottom-28"
         animClass="float-anim-3"
         delay="1.8s"
         rotation="-2.5deg"
       />
       <FloatingCartoon
         cartoonId={13}
-        className="absolute right-2.5 sm:right-4 md:right-6 xl:right-12 2xl:right-18 top-20 sm:top-24 md:top-36"
+        className="absolute right-2 sm:right-4 md:right-6 xl:right-12 2xl:right-18 top-12 sm:top-24 md:top-36"
         animClass="float-anim-5"
         delay="0.9s"
         rotation="-3deg"
       />
       <FloatingCartoon
         cartoonId={14}
-        className="absolute right-3 sm:right-6 md:right-8 xl:right-16 2xl:right-24 bottom-18 sm:bottom-24 md:bottom-32"
+        className="absolute right-2 sm:right-6 md:right-8 xl:right-16 2xl:right-24 bottom-3 sm:bottom-24 md:bottom-32"
         animClass="float-anim-7"
         delay="2.2s"
         rotation="3deg"
       />
       <FloatingCartoon
         cartoonId={15}
-        className="absolute left-2.5 sm:left-4 md:left-5 xl:left-10 2xl:left-14 top-[50%] -translate-y-1/2"
+        className="absolute left-2 sm:left-4 md:left-5 xl:left-10 2xl:left-14 top-24 sm:top-[50%] sm:-translate-y-1/2"
         animClass="float-anim-2"
         delay="1.4s"
         rotation="2deg"
@@ -202,35 +202,35 @@ export function ProgramsCartoons() {
     <>
       <FloatingCartoon
         cartoonId={16}
-        className="absolute left-2.5 sm:left-4 md:left-6 xl:left-12 2xl:left-18 top-14 sm:top-16 md:top-24"
+        className="absolute left-2 sm:left-4 md:left-6 xl:left-12 2xl:left-18 top-10 sm:top-16 md:top-24"
         animClass="float-anim-4"
         delay="0.3s"
         rotation="-2.5deg"
       />
       <FloatingCartoon
         cartoonId={17}
-        className="absolute left-3 sm:left-6 md:left-8 xl:left-16 2xl:left-24 bottom-14 sm:bottom-16 md:bottom-24"
+        className="absolute left-2 sm:left-6 md:left-8 xl:left-16 2xl:left-24 bottom-3 sm:bottom-16 md:bottom-24"
         animClass="float-anim-6"
         delay="2.4s"
         rotation="2.5deg"
       />
       <FloatingCartoon
         cartoonId={18}
-        className="absolute right-2.5 sm:right-4 md:right-6 xl:right-12 2xl:right-18 top-16 sm:top-20 md:top-28"
+        className="absolute right-2 sm:right-4 md:right-6 xl:right-12 2xl:right-18 top-10 sm:top-20 md:top-28"
         animClass="float-anim-2"
         delay="0.7s"
         rotation="3deg"
       />
       <FloatingCartoon
         cartoonId={19}
-        className="absolute right-3 sm:right-6 md:right-8 xl:right-16 2xl:right-24 bottom-16 sm:bottom-20 md:bottom-28"
+        className="absolute right-2 sm:right-6 md:right-8 xl:right-16 2xl:right-24 bottom-3 sm:bottom-20 md:bottom-28"
         animClass="float-anim-8"
         delay="2.1s"
         rotation="-3deg"
       />
       <FloatingCartoon
         cartoonId={20}
-        className="absolute right-2.5 sm:right-4 md:right-5 xl:right-10 2xl:right-14 top-[50%] -translate-y-1/2"
+        className="absolute right-2 sm:right-4 md:right-5 xl:right-10 2xl:right-14 top-20 sm:top-[50%] sm:-translate-y-1/2"
         animClass="float-anim-1"
         delay="1.5s"
         rotation="-2deg"
@@ -273,7 +273,7 @@ export function ApproachCartoons() {
       />
       <FloatingCartoon
         cartoonId={25}
-        className="absolute left-2.5 sm:left-4 md:left-5 xl:left-10 2xl:left-14 top-[50%] -translate-y-1/2"
+        className="absolute left-2.5 sm:left-4 md:left-5 xl:left-10 2xl:left-14 top-24 sm:top-[50%] sm:-translate-y-1/2"
         animClass="float-anim-6"
         delay="1.8s"
         rotation="2deg"
