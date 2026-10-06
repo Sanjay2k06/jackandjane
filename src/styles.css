@@ -104,6 +104,84 @@
 }
 @utility drift { animation: drift 7s ease-in-out infinite; }
 
-@media (prefers-reduced-motion: reduce) {
-  .drift { animation: none; }
+@keyframes float-gentle-1 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-13px) rotate(3deg); }
 }
+@keyframes float-gentle-2 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-16px) rotate(-3.5deg); }
+}
+@keyframes float-gentle-3 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+@keyframes float-gentle-4 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(-2.5deg); }
+}
+@keyframes float-gentle-5 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-11px) rotate(3.5deg); }
+}
+@keyframes float-gentle-6 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(-4deg); }
+}
+@keyframes float-gentle-7 {
+  0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) translateX(4px) rotate(3deg); }
+}
+@keyframes float-gentle-8 {
+  0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+  50% { transform: translateY(-16px) translateX(-5px) rotate(-3.5deg); }
+}
+
+.float-anim-1 { animation: float-gentle-1 7.2s ease-in-out infinite; }
+.float-anim-2 { animation: float-gentle-2 8.8s ease-in-out infinite; }
+.float-anim-3 { animation: float-gentle-3 6.6s ease-in-out infinite; }
+.float-anim-4 { animation: float-gentle-4 9.2s ease-in-out infinite; }
+.float-anim-5 { animation: float-gentle-5 7.8s ease-in-out infinite; }
+.float-anim-6 { animation: float-gentle-6 8.4s ease-in-out infinite; }
+.float-anim-7 { animation: float-gentle-7 9.8s ease-in-out infinite; }
+.float-anim-8 { animation: float-gentle-8 10.6s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .drift,
+  .float-anim-1,
+  .float-anim-2,
+  .float-anim-3,
+  .float-anim-4,
+  .float-anim-5,
+  .float-anim-6,
+  .float-anim-7,
+  .float-anim-8 {
+    animation: none !important;
+  }
+}
+
+/* Minimal Light Map Styling */
+.minimal-light-map {
+  background-color: #f5f2eb !important;
+}
+
+.minimal-light-map .leaflet-tile {
+  filter: brightness(1.05) contrast(0.92) saturate(0.35) sepia(0.06) !important;
+}
+
+.minimal-light-map .leaflet-popup-content-wrapper {
+  background: var(--color-card) !important;
+  color: var(--color-foreground) !important;
+  border: 2px solid var(--color-foreground) !important;
+  border-radius: 1.25rem !important;
+  box-shadow: 4px 4px 0 var(--color-foreground) !important;
+  padding: 0.25rem !important;
+}
+
+.minimal-light-map .leaflet-popup-tip {
+  background: var(--color-card) !important;
+  border: 2px solid var(--color-foreground) !important;
+  box-shadow: none !important;
+}
+
+

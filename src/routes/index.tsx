@@ -13,6 +13,16 @@ import {
 } from "motion/react";
 import Lenis from "lenis";
 import { Star, Cloud, Balloon, Block, Puzzle, Plane } from "@/components/Toys";
+import { CentresMap } from "@/components/CentresMap";
+import {
+  HeroCartoons,
+  AboutCartoons,
+  ServicesCartoons,
+  ProgramsCartoons,
+  ApproachCartoons,
+  CentresCartoons,
+  ContactCartoons,
+} from "@/components/FloatingCartoons";
 
 const TITLE = "Jack & Jane Developmental Centre — Palavakkam & Neelankarai";
 const DESC =
@@ -32,6 +42,7 @@ export const Route = createFileRoute("/")({
 
 const PHONE = "73972 71374";
 const TEL = "tel:+917397271374";
+const WHATSAPP_URL = "https://wa.me/917397271374";
 const HOURS = "2:00 PM – 8:00 PM";
 
 const SERVICES = [
@@ -47,13 +58,46 @@ const SERVICES = [
 ];
 const TINTS = ["var(--color-peach)", "var(--color-sky)", "var(--color-sage)", "var(--color-butter)", "var(--color-blush)"];
 
-const PROGRAMS = [
-  { t: "Early Development", s: ["Early Intervention Program", "Sensory Integration"] },
-  { t: "Communication", s: ["Speech & Communication Support"] },
-  { t: "Learning", s: ["IQ Boosting Program", "School Readiness Program"] },
-  { t: "Social & Behavioural Development", s: ["Behaviour Modification", "Social Skills Training"] },
-  { t: "Play & Connection", s: ["Play Therapy & Group Therapy"] },
-  { t: "Parent Support", s: ["Parent Counseling & Guidance"] },
+type ProgramItem = {
+  t: string;
+  s: string[];
+  img?: string;
+  alt?: string;
+};
+
+const PROGRAMS: ProgramItem[] = [
+  {
+    t: "Early Development",
+    s: ["Early Intervention Program", "Sensory Integration"],
+    img: "/assets/images/sensory-integration.jpeg",
+    alt: "Child exploring sensory rice bowls during tactile integration session",
+  },
+  {
+    t: "Communication",
+    s: ["Speech & Communication Support"],
+    img: "/assets/images/speech-therapy.jpeg",
+    alt: "Child training with oral motor breathing spirometer during speech support",
+  },
+  {
+    t: "Learning",
+    s: ["IQ Boosting Program", "School Readiness Program"],
+  },
+  {
+    t: "Social & Behavioural Development",
+    s: ["Behaviour Modification", "Social Skills Training"],
+    img: "/assets/images/motor-skills.jpeg",
+    alt: "Child practicing balance and coordination on movement and agility mat",
+  },
+  {
+    t: "Play & Connection",
+    s: ["Play Therapy & Group Therapy"],
+    img: "/assets/images/art-activities.jpeg",
+    alt: "Children proudly showing creative drawings during group play therapy",
+  },
+  {
+    t: "Parent Support",
+    s: ["Parent Counseling & Guidance"],
+  },
 ];
 const STAGES = ["Understand", "Support", "Develop", "Grow"];
 const NAV: [string, string][] = [
@@ -145,25 +189,34 @@ function Nav() {
     setTimeout(() => go(id), 150);
   };
   return (
-    <header className="fixed inset-x-0 top-0 z-[100]">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-10">
-        <button onClick={() => pick("hero")} className="flex items-center gap-3 text-left" aria-label="Back to top">
-          <span className="grid h-11 w-11 place-items-center rounded-full bg-secondary font-display text-sm font-bold text-secondary-foreground">
-            J&J
-          </span>
+    <header className="fixed inset-x-0 top-0 z-[100] border-b border-border/50 bg-background shadow-xs">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 md:px-10">
+        <button onClick={() => pick("hero")} className="group flex items-center gap-3 text-left" aria-label="Back to top">
+          <img
+            src="/assets/images/logo.jpeg"
+            alt="Jack and Jane Developmental Centre Logo"
+            className="h-11 w-11 rounded-full object-cover shadow-[0_2px_8px_rgba(0,0,0,0.12)] ring-1 ring-foreground/20 transition-transform duration-300 group-hover:scale-105"
+          />
           <span className="leading-tight">
-            <span className="block font-display text-lg font-semibold">Jack & Jane</span>
-            <span className="block text-[0.6rem] font-extrabold tracking-[0.2em] text-muted-foreground">DEVELOPMENTAL CENTRE</span>
+            <span className="block font-display text-base sm:text-lg font-semibold">Jack & Jane</span>
+            <span className="block text-[0.55rem] sm:text-[0.6rem] font-extrabold tracking-[0.2em] text-muted-foreground">DEVELOPMENTAL CENTRE</span>
           </span>
         </button>
-        <div className="flex items-center gap-3">
-          <button onClick={() => pick("centres")} className="btn hidden bg-primary text-primary-foreground sm:inline-flex">
-            Admissions Open
-          </button>
+        <div className="flex items-center gap-2 sm:gap-3">
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn bg-primary text-primary-foreground text-xs sm:text-sm px-3.5 py-2 sm:px-4 sm:py-2.5 inline-flex items-center gap-1.5 shadow-sm hover:opacity-95"
+            aria-label="Admissions Open - Chat on WhatsApp"
+          >
+            <span>Admissions Open</span>
+            <span className="hidden md:inline font-normal opacity-90">— Get Started</span>
+          </a>
           <button
             onClick={() => setOpen((o) => !o)}
             aria-expanded={open}
-            className="btn border border-foreground/20 bg-card/80 backdrop-blur"
+            className="btn border border-foreground/20 bg-card/80 backdrop-blur text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-2.5"
           >
             {open ? "CLOSE" : "MENU"}
           </button>
@@ -199,15 +252,17 @@ function Nav() {
                   {label}
                 </motion.button>
               ))}
-              <motion.button
-                onClick={() => pick("centres")}
+              <motion.a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6 }}
-                className="btn mt-8 self-start bg-primary text-primary-foreground"
+                className="btn mt-8 self-start bg-primary text-primary-foreground text-base shadow-[4px_4px_0_var(--color-foreground)] inline-flex items-center gap-2"
               >
-                Admissions Open
-              </motion.button>
+                Admissions Open — Get Started
+              </motion.a>
             </motion.nav>
           </>
         )}
@@ -275,8 +330,9 @@ function useIndex(p: MotionValue<number>, n: number) {
 function Hero() {
   const m = useMouse();
   return (
-    <section id="hero" className="relative flex min-h-svh items-center pt-24">
-      <div className="mx-auto grid w-full max-w-7xl items-center gap-10 px-5 md:grid-cols-[1.2fr_1fr] md:px-10">
+    <section id="hero" className="relative flex min-h-svh flex-col justify-center pt-28 pb-16 md:pt-36 md:pb-24">
+      <HeroCartoons />
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-10 px-5 md:grid-cols-[1.2fr_1fr] md:px-10">
         <div>
           <h1 className="text-5xl font-semibold leading-[1.02] md:text-7xl lg:text-[5.5rem]">
             <Reveal text="Helping Children Reach" />
@@ -289,7 +345,14 @@ function Hero() {
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <button onClick={() => go("about")} className="btn bg-secondary text-secondary-foreground">Explore Our Centre</button>
-            <button onClick={() => go("centres")} className="btn bg-primary text-primary-foreground">Admissions Open</button>
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn bg-primary text-primary-foreground inline-flex items-center gap-2"
+            >
+              Admissions Open — Get Started
+            </a>
           </div>
           <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold">
             <span>Palavakkam · Neelankarai</span>
@@ -297,30 +360,65 @@ function Hero() {
             <a href={TEL} className="underline decoration-primary decoration-2 underline-offset-4">{PHONE}</a>
           </div>
         </div>
-        <div className="relative mx-auto aspect-square w-full max-w-md">
-          <Float m={m} depth={30} className="left-[18%] top-[38%] w-[32%]"><Block letter="J" color="var(--color-peach)" /></Float>
-          <Float m={m} depth={45} className="left-[50%] top-[46%] w-[30%]"><Block letter="&" color="var(--color-sky)" /></Float>
-          <Float m={m} depth={20} className="left-[34%] top-[12%] w-[30%]"><Block letter="J" color="var(--color-sage)" /></Float>
-          <Float m={m} depth={60} className="right-0 top-0 w-[18%]"><Balloon /></Float>
-          <Float m={m} depth={70} className="left-0 top-[5%] w-[14%]"><Balloon color="var(--color-sky)" /></Float>
-          <Float m={m} depth={25} className="bottom-[4%] right-[8%] w-[16%]"><Star /></Float>
-          <Float m={m} depth={50} className="bottom-[10%] left-[4%] w-[28%]"><Cloud /></Float>
+        <div className="relative mx-auto flex w-full max-w-lg items-center justify-center lg:max-w-xl">
+          <div className="relative w-full overflow-hidden rounded-[2rem] border-2 border-foreground bg-card shadow-[8px_8px_0_var(--color-foreground)] transition-transform duration-300 hover:-translate-y-1">
+            <img
+              src="/assets/images/hero_image.jpeg"
+              alt="Jack & Jane Developmental Centre Children Learning & Growth"
+              className="h-auto w-full max-h-[460px] object-contain"
+              loading="eager"
+            />
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
+const GALLERY_ITEMS = [
+  {
+    src: "/assets/images/art-activities.jpeg",
+    title: "Creative Art & Group Play",
+    desc: "Children celebrating their artwork together, building social confidence and peer interaction.",
+    badge: "Group Therapy",
+    tint: "var(--color-peach)",
+  },
+  {
+    src: "/assets/images/speech-therapy.jpeg",
+    title: "Speech & Oral-Motor Care",
+    desc: "Targeted breath flow and articulation exercises using specialized clinical instruments.",
+    badge: "Speech Support",
+    tint: "var(--color-sky)",
+  },
+  {
+    src: "/assets/images/sensory-integration.jpeg",
+    title: "Sensory Integration",
+    desc: "Tactile exploration with sensory rice bins supporting sensory regulation and motor focus.",
+    badge: "Sensory Therapy",
+    tint: "var(--color-sage)",
+  },
+  {
+    src: "/assets/images/motor-skills.jpeg",
+    title: "Motor Skills & Agility",
+    desc: "Interactive balance and spatial coordination activities on structured movement mats.",
+    badge: "Active Growth",
+    tint: "var(--color-butter)",
+  },
+];
+
 /* ---------- 2. About ---------- */
 function About() {
   const m = useMouse();
   return (
     <section id="about" className="relative py-28 md:py-40">
+      <AboutCartoons />
       <Float m={m} depth={40} className="right-[8%] top-16 w-16 md:w-24"><Puzzle /></Float>
       <Float m={m} depth={25} className="bottom-12 left-[6%] w-20 md:w-28"><Plane /></Float>
       <Float m={m} depth={55} className="right-[22%] bottom-10 w-10 md:w-14"><Star /></Float>
       <div className="relative mx-auto max-w-4xl px-5 text-center">
-        <p className="eyebrow">About Jack & Jane</p>
+        <p className="eyebrow font-black text-xs sm:text-sm tracking-[0.24em]">
+          <strong className="font-black">About Jack & Jane</strong>
+        </p>
         <h2 className="mt-5 text-4xl leading-tight md:text-6xl">
           <Reveal text="Helping Children Grow With Confidence" />
         </h2>
@@ -333,6 +431,40 @@ function About() {
         >
           We provide specialized support and developmental programs for children to help them reach their full potential.
         </motion.p>
+      </div>
+
+      <div className="relative mx-auto mt-16 max-w-7xl px-5 md:px-10">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {GALLERY_ITEMS.map((item, idx) => (
+            <motion.div
+              key={item.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ delay: idx * 0.12, duration: 0.6 }}
+              className="group flex flex-col overflow-hidden rounded-[2rem] border-2 border-foreground bg-card shadow-[6px_6px_0_var(--color-foreground)] transition-transform duration-300 hover:-translate-y-1"
+            >
+              <div className="relative aspect-[3/4] w-full overflow-hidden border-b-2 border-foreground bg-muted">
+                <img
+                  src={item.src}
+                  alt={item.title}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <span
+                  style={{ background: item.tint }}
+                  className="absolute left-3 top-3 rounded-full border border-foreground px-3 py-1 text-xs font-bold text-foreground shadow-[2px_2px_0_var(--color-foreground)]"
+                >
+                  {item.badge}
+                </span>
+              </div>
+              <div className="flex flex-1 flex-col p-5">
+                <h3 className="font-display text-xl font-semibold leading-tight">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.desc}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -362,7 +494,8 @@ function Services() {
   return (
     <section id="services" ref={ref} className="relative" style={{ height: `${n * 55}vh` }}>
       <div className="sticky top-0 flex h-svh items-center">
-        <div className="mx-auto grid w-full max-w-7xl items-center gap-8 px-5 md:grid-cols-[1fr_1.1fr] md:px-10">
+        <ServicesCartoons />
+        <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-8 px-5 md:grid-cols-[1fr_1.1fr] md:px-10">
           <div>
             <p className="eyebrow">Services</p>
             <h2 className="mt-4 text-4xl leading-tight md:text-6xl">Support Designed Around Every Child</h2>
@@ -410,21 +543,35 @@ function ProgramSlide({ p, i, n }: { p: MotionValue<number>; i: number; n: numbe
   return (
     <motion.article
       style={{ rotateY, x, z, scale, opacity }}
-      className="absolute inset-0 grid items-center gap-6 rounded-[2rem] border-2 border-foreground bg-card p-8 md:grid-cols-[1.3fr_1fr] md:p-12"
+      className="absolute inset-0 grid items-center gap-6 overflow-hidden rounded-[2rem] border-2 border-foreground bg-card p-6 shadow-[8px_8px_0_var(--color-foreground)] md:grid-cols-[1.2fr_1fr] md:p-8 lg:p-10"
     >
-      <div>
-        <span className="font-display text-6xl text-primary">{String(i + 1).padStart(2, "0")}</span>
-        <h3 className="mt-2 text-3xl leading-tight md:text-4xl">{prog.t}</h3>
-        <ul className="mt-6 space-y-2">
+      <div className="flex flex-col justify-center">
+        <span className="font-display text-4xl text-primary md:text-5xl">{String(i + 1).padStart(2, "0")}</span>
+        <h3 className="mt-2 text-xl font-bold leading-tight sm:text-2xl md:text-3xl lg:text-4xl">{prog.t}</h3>
+        <ul className="mt-3 space-y-2 md:mt-5">
           {prog.s.map((s) => (
-            <li key={s} className="flex items-center gap-3 font-semibold">
-              <span className="h-2 w-2 rounded-full bg-primary" />{s}
+            <li key={s} className="flex items-center gap-2.5 text-xs font-semibold sm:text-sm md:text-base">
+              <span className="h-2 w-2 shrink-0 rounded-full bg-primary" />
+              {s}
             </li>
           ))}
         </ul>
       </div>
-      <div className="mx-auto hidden w-40 md:block md:w-52" style={{ filter: "drop-shadow(6px 6px 0 var(--color-accent))" }}>
-        {PROGRAM_ART[i]}
+      <div className="mx-auto flex h-full max-h-[270px] w-full items-center justify-center md:max-h-[300px]">
+        {prog.img ? (
+          <div className="relative h-full max-h-[240px] w-auto aspect-[3/4] overflow-hidden rounded-2xl border-2 border-foreground bg-muted shadow-[5px_5px_0_var(--color-foreground)] sm:max-h-[260px] md:max-h-[280px]">
+            <img
+              src={prog.img}
+              alt={prog.alt ?? prog.t}
+              className="h-full w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        ) : (
+          <div className="mx-auto hidden max-h-[220px] w-36 md:block md:w-44" style={{ filter: "drop-shadow(6px 6px 0 var(--color-accent))" }}>
+            {PROGRAM_ART[i]}
+          </div>
+        )}
       </div>
     </motion.article>
   );
@@ -435,18 +582,19 @@ function Programs() {
   const n = PROGRAMS.length;
   return (
     <section id="programs" ref={ref} className="relative" style={{ height: `${n * 60}vh` }}>
-      <div className="sticky top-0 flex h-svh flex-col justify-center gap-8 px-5 md:px-10">
-        <div className="mx-auto w-full max-w-5xl">
+      <div className="sticky top-0 flex h-svh flex-col justify-center gap-6 px-5 md:gap-8 md:px-10">
+        <ProgramsCartoons />
+        <div className="relative z-10 mx-auto w-full max-w-5xl">
           <p className="eyebrow">Our Programs</p>
-          <div className="mt-3 flex flex-wrap items-end justify-between gap-4">
-            <h2 className="max-w-xl text-4xl leading-tight md:text-5xl">Every Child Has Their Own Journey</h2>
+          <div className="mt-2 flex flex-wrap items-end justify-between gap-4 md:mt-3">
+            <h2 className="max-w-xl text-3xl leading-tight md:text-5xl">Every Child Has Their Own Journey</h2>
             <Counter p={p} n={n} />
           </div>
-          <p className="mt-3 max-w-lg text-muted-foreground">
+          <p className="mt-2 max-w-lg text-sm text-muted-foreground md:mt-3 md:text-base">
             Our specialized services are organized into focused pathways to support each child's development.
           </p>
         </div>
-        <div className="relative mx-auto h-[44svh] w-full max-w-5xl [perspective:1200px] md:h-[40svh]">
+        <div className="relative mx-auto h-[48svh] min-h-[380px] max-h-[460px] w-full max-w-5xl [perspective:1200px] md:min-h-[420px]">
           {PROGRAMS.map((_, i) => <ProgramSlide key={i} p={p} i={i} n={n} />)}
         </div>
       </div>
@@ -476,6 +624,7 @@ function Approach() {
   return (
     <section id="approach" ref={ref} className="relative h-[320vh]">
       <div className="sticky top-0 flex h-svh flex-col items-center justify-center px-5">
+        <ApproachCartoons />
         <motion.div style={{ background: bg, clipPath: clip, opacity: 0.55 }} className="absolute inset-0" />
         <div className="absolute top-24 text-center">
           <p className="eyebrow">Our Approach</p>
@@ -513,34 +662,26 @@ const seq = (i: number) => ({
 
 function Centres() {
   return (
-    <section id="centres" className="relative py-28 md:py-36">
-      <div className="mx-auto max-w-6xl px-5 md:px-10">
-        <p className="eyebrow">Our Centres</p>
-        <div className="mt-6 grid gap-x-10 border-t-2 border-foreground md:grid-cols-2">
-          {["Palavakkam", "Neelankarai"].map((c, i) => (
-            <motion.h3 key={c} {...seq(i)} className="border-b border-border py-6 text-5xl md:text-7xl">{c}</motion.h3>
-          ))}
-          <motion.p {...seq(2)} className="py-5 text-lg"><span className="eyebrow mr-3">Hours</span>{HOURS}</motion.p>
-          <motion.p {...seq(3)} className="py-5 text-lg"><span className="eyebrow mr-3">Phone</span><a href={TEL}>{PHONE}</a></motion.p>
+    <section id="centres" className="relative pt-16 pb-12 md:pt-24 md:pb-16">
+      <CentresCartoons />
+      <div className="relative z-10 mx-auto max-w-6xl px-5 md:px-10">
+        <div className="mb-8 md:mb-10">
+          <p className="eyebrow">Our Centres</p>
+          <div className="mt-3 flex flex-wrap items-end justify-between gap-4">
+            <h2 className="max-w-2xl text-4xl leading-tight md:text-5xl">
+              Palavakkam & Neelankarai
+            </h2>
+            <p className="text-sm font-semibold text-muted-foreground">
+              Hours: <span className="text-foreground font-bold">{HOURS}</span> · Phone:{" "}
+              <a href={TEL} className="underline decoration-primary underline-offset-4 text-foreground font-bold">
+                {PHONE}
+              </a>
+            </p>
+          </div>
         </div>
 
-        <motion.div
-          initial={{ clipPath: "inset(0 0 100% 0)" }}
-          whileInView={{ clipPath: "inset(0 0 0% 0)" }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 1, ease: [0.7, 0, 0.2, 1] }}
-          className="relative mt-16 overflow-hidden rounded-[2rem] bg-secondary p-10 text-secondary-foreground md:p-16"
-        >
-          <Star className="absolute right-8 top-8 w-14 md:w-20" />
-          <p className="eyebrow">Admissions Open</p>
-          <h2 className="mt-4 max-w-2xl text-4xl leading-tight md:text-6xl">
-            Begin Your Child's <em className="text-primary">Journey</em>
-          </h2>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a href={TEL} className="btn bg-primary text-primary-foreground">Enquire About Admissions</a>
-            <a href={TEL} className="btn border border-secondary-foreground/30">Call {PHONE}</a>
-          </div>
-        </motion.div>
+        {/* Editorial Split Layout Map & Location Selector */}
+        <CentresMap />
       </div>
     </section>
   );
@@ -549,16 +690,24 @@ function Centres() {
 /* ---------- 7. Contact + Footer ---------- */
 function Contact() {
   return (
-    <section id="contact" className="relative pt-20">
-      <motion.div {...seq(0)} className="mx-auto max-w-6xl px-5 md:px-10">
+    <section id="contact" className="relative pt-12 md:pt-16">
+      <ContactCartoons />
+      <motion.div {...seq(0)} className="relative z-10 mx-auto max-w-6xl px-5 md:px-10">
         <h2 className="text-4xl md:text-6xl">Get In Touch</h2>
         <a href={TEL} className="mt-6 block font-display text-5xl text-primary md:text-8xl">{PHONE}</a>
         <p className="mt-4 text-lg font-semibold">Palavakkam · Neelankarai <span className="text-muted-foreground">— {HOURS}</span></p>
       </motion.div>
-      <motion.footer {...seq(1)} className="mx-auto mt-20 flex max-w-6xl flex-wrap items-end justify-between gap-6 border-t-2 border-foreground px-5 py-10 text-sm md:px-10">
-        <div>
-          <p className="font-display text-2xl font-semibold">JACK & JANE</p>
-          <p className="text-[0.65rem] font-extrabold tracking-[0.2em] text-muted-foreground">DEVELOPMENTAL CENTRE</p>
+      <motion.footer {...seq(1)} className="relative z-10 mx-auto mt-20 flex max-w-6xl flex-wrap items-end justify-between gap-6 border-t-2 border-foreground px-5 py-10 text-sm md:px-10">
+        <div className="flex items-center gap-3.5">
+          <img
+            src="/assets/images/logo.jpeg"
+            alt="Jack and Jane Developmental Centre Logo"
+            className="h-12 w-12 rounded-full object-cover ring-1 ring-foreground/20 shadow-xs"
+          />
+          <div>
+            <p className="font-display text-2xl font-semibold">JACK & JANE</p>
+            <p className="text-[0.65rem] font-extrabold tracking-[0.2em] text-muted-foreground">DEVELOPMENTAL CENTRE</p>
+          </div>
         </div>
         <p className="font-semibold">Palavakkam · Neelankarai · {HOURS} · {PHONE}</p>
         <p className="w-full text-muted-foreground">© {new Date().getFullYear()} Jack & Jane Developmental Centre</p>

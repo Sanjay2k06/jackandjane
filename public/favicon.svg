@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="jj-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F27952" />
+      <stop offset="100%" stop-color="#E15C36" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="20" fill="url(#jj-grad)" />
+  <circle cx="49" cy="15" r="4" fill="#FDE68A" />
+  <text x="50%" y="55%" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" font-weight="800" fill="#FFFFFF" text-anchor="middle" dominant-baseline="central" letter-spacing="-0.5">J&amp;J</text>
+</svg>

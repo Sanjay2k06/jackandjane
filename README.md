@@ -1,24 +1,34 @@
-# Exactly As Seen
+# Jack & Jane Developmental Centre
 
-Implement exactly the screenshot and nothing else
+Specialized support and developmental programs designed to help every child learn, grow, and thrive.
 
-This project was built with [Lovable](https://lovable.dev).
+- **Locations:** Palavakkam & Neelankarai
+- **Hours:** 2:00 PM – 8:00 PM
+- **Contact:** 73972 71374
 
-## Build with Lovable
+## Tech Stack
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/5d5444c2-3ecd-4de3-9031-702227d32b18).
+- **Framework:** TanStack Start & React 19
+- **Styling:** Tailwind CSS v4 & Lucide Icons
+- **Motion:** Motion (Framer Motion) & Lenis Smooth Scroll
+- **Bundler:** Vite 8
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+## Getting Started
 
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+To run the application locally:
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+npm install
 npm run dev
+```
+
+The application will be available at [http://localhost:8080](http://localhost:8080) (or your configured port).
+
+## Production Build
+
+To build and preview for production:
+
+```sh
+npm run build
+npm run preview
 ```
