@@ -347,7 +347,7 @@ function ServiceCard({ p, i, n }: { p: MotionValue<number>; i: number; n: number
   const opacity = useTransform(d, [-1.2, -0.9, 0, 2, 3], [0, 1, 1, 0.6, 0]);
   return (
     <motion.article
-      style={{ y, scale, rotate, opacity, zIndex: i, background: TINTS[i % TINTS.length] }}
+      style={{ y, scale, rotate, opacity, zIndex: i, background: TINTS[i % TINTS.length]! }}
       className="absolute inset-0 flex flex-col justify-between rounded-[2rem] border-2 border-foreground p-8 shadow-[8px_8px_0_var(--color-foreground)] md:p-12"
     >
       <span className="font-display text-7xl md:text-9xl">{String(i + 1).padStart(2, "0")}</span>
@@ -406,7 +406,7 @@ function ProgramSlide({ p, i, n }: { p: MotionValue<number>; i: number; n: numbe
   const z = useTransform(d, [-1, 0, 1], [-300, 0, -300]);
   const scale = useTransform(d, [-1, 0, 1], [0.8, 1, 0.8]);
   const opacity = useTransform(d, [-1, -0.5, 0, 0.5, 1], [0, 0.4, 1, 0.4, 0]);
-  const prog = PROGRAMS[i];
+  const prog = PROGRAMS[i]!;
   return (
     <motion.article
       style={{ rotateY, x, z, scale, opacity }}
