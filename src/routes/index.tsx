@@ -23,6 +23,7 @@ import {
   CentresCartoons,
   ContactCartoons,
 } from "@/components/FloatingCartoons";
+import { ScrollReveal } from "@/components/ScrollReveal";
 
 const TITLE = "Jack & Jane Developmental Centre — Palavakkam & Neelankarai";
 const DESC =
@@ -139,10 +140,10 @@ function Index() {
   }, [reduce]);
 
   return (
-    <div className="relative">
+    <div className="relative overflow-x-clip">
       <Ribbon />
       <Nav />
-      <main className="relative z-10">
+      <main className="relative z-10 overflow-x-clip">
         <Hero />
         <About />
         <Services />
@@ -472,18 +473,28 @@ function About() {
         <p className="eyebrow font-black text-xs sm:text-sm tracking-[0.24em]">
           <strong className="font-black">About Jack & Jane</strong>
         </p>
-        <h2 className="mt-3 sm:mt-5 text-2.5xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight font-semibold">
-          <Reveal text="Helping Children Grow With Confidence" />
-        </h2>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-          className="mx-auto mt-4 sm:mt-6 max-w-xl text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed"
+        <ScrollReveal
+          as="h2"
+          containerClassName="mt-3 sm:mt-5 text-center"
+          textClassName="text-2.5xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight font-semibold text-foreground font-display"
+          baseOpacity={0.15}
+          enableBlur={true}
+          baseRotation={2}
+          blurStrength={3}
+        >
+          Helping Children Grow With Confidence
+        </ScrollReveal>
+        <ScrollReveal
+          as="p"
+          containerClassName="mx-auto mt-4 sm:mt-6 max-w-xl text-center"
+          textClassName="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed"
+          baseOpacity={0.15}
+          enableBlur={true}
+          baseRotation={2}
+          blurStrength={3}
         >
           We provide specialized support and developmental programs for children to help them reach their full potential.
-        </motion.p>
+        </ScrollReveal>
       </div>
 
       <div className="relative mx-auto mt-10 sm:mt-16 max-w-7xl px-4 sm:px-6 md:px-10">
@@ -656,12 +667,30 @@ function Programs() {
         <div className="relative z-10 mx-auto w-full max-w-5xl">
           <p className="eyebrow">Our Programs</p>
           <div className="mt-2 flex flex-wrap items-end justify-between gap-3 md:mt-3">
-            <h2 className="max-w-xl text-2.5xl sm:text-3xl md:text-5xl leading-tight font-semibold">Every Child Has Their Own Journey</h2>
+            <ScrollReveal
+              as="h2"
+              containerClassName="max-w-xl"
+              textClassName="text-2.5xl sm:text-3xl md:text-5xl leading-tight font-semibold text-foreground font-display"
+              baseOpacity={0.15}
+              enableBlur={true}
+              baseRotation={2}
+              blurStrength={3}
+            >
+              Every Child Has Their Own Journey
+            </ScrollReveal>
             <Counter p={p} n={n} />
           </div>
-          <p className="mt-1.5 sm:mt-2 max-w-lg text-xs sm:text-sm md:text-base text-muted-foreground">
+          <ScrollReveal
+            as="p"
+            containerClassName="mt-1.5 sm:mt-2 max-w-lg"
+            textClassName="text-xs sm:text-sm md:text-base text-muted-foreground"
+            baseOpacity={0.15}
+            enableBlur={true}
+            baseRotation={2}
+            blurStrength={3}
+          >
             Our specialized services are organized into focused pathways to support each child's development.
-          </p>
+          </ScrollReveal>
         </div>
         <div className="relative mx-auto h-[48svh] min-h-[340px] sm:min-h-[380px] max-h-[460px] w-full max-w-5xl [perspective:1200px] md:min-h-[420px]">
           {PROGRAMS.map((_, i) => <ProgramSlide key={i} p={p} i={i} n={n} />)}
@@ -735,7 +764,17 @@ function Centres() {
       <CentresCartoons />
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 md:px-10">
         <div className="mb-6 sm:mb-8 md:mb-10">
-          <p className="eyebrow">Our Centres</p>
+          <ScrollReveal
+            as="p"
+            containerClassName="inline-block"
+            textClassName="eyebrow block"
+            baseOpacity={0.15}
+            enableBlur={true}
+            baseRotation={2}
+            blurStrength={3}
+          >
+            Our Centres
+          </ScrollReveal>
           <div className="mt-2 sm:mt-3 flex flex-wrap items-end justify-between gap-3 sm:gap-4">
             <h2 className="max-w-2xl text-2.5xl sm:text-4xl md:text-5xl leading-tight font-semibold">
               Palavakkam & Neelankarai
@@ -762,7 +801,17 @@ function Contact() {
     <section id="contact" className="relative pt-12 md:pt-16">
       <ContactCartoons />
       <motion.div {...seq(0)} className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 md:px-10">
-        <h2 className="text-3xl sm:text-4xl md:text-6xl font-semibold">Get In Touch</h2>
+        <ScrollReveal
+          as="h2"
+          containerClassName="block"
+          textClassName="text-3xl sm:text-4xl md:text-6xl font-semibold text-foreground font-display"
+          baseOpacity={0.15}
+          enableBlur={true}
+          baseRotation={2}
+          blurStrength={3}
+        >
+          Get In Touch
+        </ScrollReveal>
         <a href={TEL} className="mt-4 sm:mt-6 block font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-primary break-all sm:break-normal">{PHONE}</a>
         <p className="mt-3 sm:mt-4 text-base sm:text-lg font-bold text-foreground">
           Palavakkam · Neelankarai <span className="font-extrabold text-foreground">— Hours: {HOURS}</span>
