@@ -71,20 +71,22 @@
     box-sizing: border-box;
   }
   html {
-    overflow-x: clip;
+    overflow-x: hidden;
     width: 100%;
     max-width: 100%;
     -webkit-text-size-adjust: 100%;
+    touch-action: pan-y;
   }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
-    overflow-x: clip;
+    overflow-x: hidden;
     width: 100%;
     max-width: 100%;
     margin: 0;
     padding: 0;
+    touch-action: pan-y;
   }
   img, svg, video {
     max-width: 100%;
@@ -176,43 +178,43 @@
 .float-anim-7 { animation: float-gentle-7 9.8s ease-in-out infinite; }
 .float-anim-8 { animation: float-gentle-8 10.6s ease-in-out infinite; }
 
-/* Mobile: 40–50% reduced animation intensity (calmer movement distance & rotation) */
+/* Mobile: Subtle floating animation without horizontal movement to eliminate jitter */
 @media (max-width: 767px) {
   @keyframes float-gentle-1-m {
     0%, 100% { transform: translate3d(0, 0px, 0) rotate(0deg); }
-    50% { transform: translate3d(0, -5px, 0) rotate(1.2deg); }
+    50% { transform: translate3d(0, -3.5px, 0) rotate(0.8deg); }
   }
   @keyframes float-gentle-2-m {
     0%, 100% { transform: translate3d(0, 0px, 0) rotate(0deg); }
-    50% { transform: translate3d(0, -6px, 0) rotate(-1.4deg); }
+    50% { transform: translate3d(0, -4px, 0) rotate(-0.8deg); }
   }
   @keyframes float-gentle-3-m {
     0%, 100% { transform: translate3d(0, 0px, 0) rotate(0deg); }
-    50% { transform: translate3d(0, -4px, 0) rotate(0.8deg); }
+    50% { transform: translate3d(0, -3px, 0) rotate(0.6deg); }
   }
   @keyframes float-gentle-4-m {
     0%, 100% { transform: translate3d(0, 0px, 0) rotate(0deg); }
-    50% { transform: translate3d(0, -5px, 0) rotate(-1.0deg); }
+    50% { transform: translate3d(0, -3.5px, 0) rotate(-0.7deg); }
   }
   @keyframes float-gentle-5-m {
     0%, 100% { transform: translate3d(0, 0px, 0) rotate(0deg); }
-    50% { transform: translate3d(0, -4px, 0) rotate(1.2deg); }
+    50% { transform: translate3d(0, -3px, 0) rotate(0.8deg); }
   }
   @keyframes float-gentle-6-m {
     0%, 100% { transform: translate3d(0, 0px, 0) rotate(0deg); }
-    50% { transform: translate3d(0, -6px, 0) rotate(-1.4deg); }
+    50% { transform: translate3d(0, -4px, 0) rotate(-0.8deg); }
   }
   @keyframes float-gentle-7-m {
     0%, 100% { transform: translate3d(0, 0px, 0) rotate(0deg); }
-    50% { transform: translate3d(2px, -4px, 0) rotate(1.0deg); }
+    50% { transform: translate3d(0, -3px, 0) rotate(0.7deg); }
   }
   @keyframes float-gentle-8-m {
     0%, 100% { transform: translate3d(0, 0px, 0) rotate(0deg); }
-    50% { transform: translate3d(-2px, -5px, 0) rotate(-1.2deg); }
+    50% { transform: translate3d(0, -3.5px, 0) rotate(-0.7deg); }
   }
   @keyframes drift-m {
     0%, 100% { transform: translate3d(0, 0px, 0) rotate(0deg); }
-    50% { transform: translate3d(0, -5px, 0) rotate(1.4deg); }
+    50% { transform: translate3d(0, -3.5px, 0) rotate(0.8deg); }
   }
 
   .float-anim-1 { animation: float-gentle-1-m 8s ease-in-out infinite; }

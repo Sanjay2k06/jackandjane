@@ -159,10 +159,10 @@ function Index() {
   }, [reduce]);
 
   return (
-    <div className="relative overflow-x-clip">
+    <div className="relative w-full max-w-full overflow-x-hidden">
       <Ribbon />
       <Nav />
-      <main className="relative z-10 overflow-x-clip">
+      <main className="relative z-10 w-full max-w-full overflow-x-hidden">
         <Hero />
         <About />
         <Services />
@@ -180,6 +180,7 @@ function Ribbon() {
   const isMobile = useIsMobile();
   const { scrollYProgress } = useScroll();
   const len = useSpring(scrollYProgress, { stiffness: 80, damping: 25 });
+  if (isMobile) return null;
   return (
     <svg
       className="pointer-events-none absolute inset-0 z-[1] h-full w-full"
@@ -195,7 +196,7 @@ function Ribbon() {
         strokeWidth={10}
         strokeLinecap="round"
         vectorEffect="non-scaling-stroke"
-        style={{ pathLength: isMobile ? scrollYProgress : len }}
+        style={{ pathLength: len }}
       />
     </svg>
   );
@@ -418,7 +419,7 @@ function Hero() {
             </a>
           </div>
         </div>
-        <div className="relative mx-auto flex w-full max-w-md sm:max-w-lg items-center justify-center lg:max-w-xl">
+        <div className="relative mx-auto flex w-full max-w-[310px] sm:max-w-md items-center justify-center lg:max-w-xl">
           <div className="relative w-full overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border-2 border-foreground bg-card shadow-[6px_6px_0_var(--color-foreground)] sm:shadow-[8px_8px_0_var(--color-foreground)] transition-transform duration-300 hover:-translate-y-1">
             <img
               src="/assets/images/hero_image.jpeg"
@@ -573,18 +574,18 @@ function About() {
 function ServiceCard({ p, i, n }: { p: MotionValue<number>; i: number; n: number }) {
   const isMobile = useIsMobile();
   const d = useTransform(p, (v) => v * (n - 1) - i); // <0 upcoming, 0 active, >0 passed
-  const rotVal = isMobile ? 1.5 : 3;
-  const y = useTransform(d, [-1, 0, 1], isMobile ? ["102%", "0%", "-3.5%"] : ["105%", "0%", "-6%"]);
-  const scale = useTransform(d, [-1, 0, 1, 3], isMobile ? [1, 1, 0.95, 0.90] : [1, 1, 0.92, 0.84]);
+  const rotVal = isMobile ? 1.2 : 3;
+  const y = useTransform(d, [-1, 0, 1], isMobile ? ["100%", "0%", "-2.5%"] : ["105%", "0%", "-6%"]);
+  const scale = useTransform(d, [-1, 0, 1, 3], isMobile ? [1, 1, 0.96, 0.92] : [1, 1, 0.92, 0.84]);
   const rotate = useTransform(d, [0, 1], [0, i % 2 ? rotVal : -rotVal]);
   const opacity = useTransform(d, [-1.2, -0.9, 0, 1.8, 2.5], [0, 1, 1, 0.5, 0]);
   return (
     <motion.article
       style={{ y, scale, rotate, opacity, zIndex: i, background: TINTS[i % TINTS.length]! }}
-      className="absolute inset-0 flex flex-col justify-between rounded-[1.25rem] sm:rounded-[1.75rem] md:rounded-[2rem] border-2 border-foreground p-4 sm:p-7 md:p-12 shadow-[4px_4px_0_var(--color-foreground)] sm:shadow-[6px_6px_0_var(--color-foreground)] md:shadow-[8px_8px_0_var(--color-foreground)] select-none"
+      className="absolute inset-0 flex flex-col justify-between rounded-[1.25rem] sm:rounded-[1.75rem] md:rounded-[2rem] border-2 border-foreground p-3.5 sm:p-7 md:p-12 shadow-[4px_4px_0_var(--color-foreground)] sm:shadow-[6px_6px_0_var(--color-foreground)] md:shadow-[8px_8px_0_var(--color-foreground)] select-none will-change-transform"
     >
-      <span className="font-display text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-semibold leading-none">{String(i + 1).padStart(2, "0")}</span>
-      <h3 className="text-lg sm:text-2xl md:text-4xl lg:text-5xl font-semibold leading-tight">{SERVICES[i]}</h3>
+      <span className="font-display text-3.5xl sm:text-6xl md:text-8xl lg:text-9xl font-semibold leading-none">{String(i + 1).padStart(2, "0")}</span>
+      <h3 className="text-base sm:text-2xl md:text-4xl lg:text-5xl font-semibold leading-tight">{SERVICES[i]}</h3>
     </motion.article>
   );
 }
@@ -596,13 +597,13 @@ function Services() {
     <section id="services" ref={ref} className="relative w-full max-w-full box-border" style={{ height: `${n * 55}vh` }}>
       <div className="sticky top-0 flex h-svh items-center">
         <ServicesCartoons />
-        <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-4 sm:gap-8 px-4 sm:px-6 md:grid-cols-[1fr_1.1fr] md:px-10">
+        <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-3 sm:gap-8 px-4 sm:px-6 md:grid-cols-[1fr_1.1fr] md:px-10">
           <div>
             <p className="eyebrow">Services</p>
-            <h2 className="mt-2 sm:mt-4 text-2xl sm:text-4xl md:text-6xl leading-tight">Support Designed Around Every Child</h2>
+            <h2 className="mt-1.5 sm:mt-4 text-2xl sm:text-4xl md:text-6xl leading-tight">Support Designed Around Every Child</h2>
             <Counter p={p} n={n} />
           </div>
-          <div className="relative mx-auto h-[32svh] sm:h-[42svh] md:h-[52svh] min-h-[200px] sm:min-h-[270px] md:min-h-[360px] w-full max-w-[92vw] sm:max-w-md md:max-w-lg">
+          <div className="relative mx-auto h-[26svh] sm:h-[40svh] md:h-[52svh] min-h-[175px] sm:min-h-[260px] md:min-h-[360px] w-[calc(100%-80px)] max-w-[310px] sm:max-w-md md:max-w-lg">
             {SERVICES.map((_, i) => <ServiceCard key={i} p={p} i={i} n={n} />)}
           </div>
         </div>
@@ -636,37 +637,42 @@ const PROGRAM_ART = [
 function ProgramSlide({ p, i, n }: { p: MotionValue<number>; i: number; n: number }) {
   const isMobile = useIsMobile();
   const d = useTransform(p, (v) => v * (n - 1) - i);
-  const rotYVal = isMobile ? 16 : 35;
-  const zVal = isMobile ? -140 : -300;
-  const xVal = isMobile ? ["28%", "0%", "-28%"] : ["60%", "0%", "-60%"];
-  const scaleVal = isMobile ? [0.91, 1, 0.91] : [0.8, 1, 0.8];
+  const rotYVal = isMobile ? 12 : 35;
+  const zVal = isMobile ? -80 : -300;
+  const xVal = isMobile ? ["15%", "0%", "-15%"] : ["60%", "0%", "-60%"];
+  const scaleVal = isMobile ? [0.94, 1, 0.94] : [0.8, 1, 0.8];
 
   const rotateY = useTransform(d, [-1, 0, 1], [-rotYVal, 0, rotYVal]);
   const x = useTransform(d, [-1, 0, 1], xVal);
   const z = useTransform(d, [-1, 0, 1], [zVal, 0, zVal]);
   const scale = useTransform(d, [-1, 0, 1], scaleVal);
-  const opacity = useTransform(d, [-1, -0.6, 0, 0.6, 1], [0, 0.45, 1, 0.45, 0]);
+  const opacity = useTransform(
+    d,
+    isMobile ? [-0.75, -0.25, 0, 0.25, 0.75] : [-1, -0.5, 0, 0.5, 1],
+    isMobile ? [0, 0.85, 1, 0.85, 0] : [0, 0.4, 1, 0.4, 0]
+  );
+  const zIndex = useTransform(d, (val) => Math.round(50 - Math.abs(val) * 10));
   const prog = PROGRAMS[i]!;
   return (
     <motion.article
-      style={{ rotateY, x, z, scale, opacity }}
-      className="absolute inset-0 grid grid-cols-[1.15fr_0.85fr] sm:grid-cols-[1.2fr_1fr] items-center gap-3 sm:gap-6 overflow-hidden rounded-[1.25rem] sm:rounded-[1.75rem] md:rounded-[2rem] border-2 border-foreground bg-card p-3.5 sm:p-6 md:p-8 lg:p-10 shadow-[4px_4px_0_var(--color-foreground)] sm:shadow-[6px_6px_0_var(--color-foreground)] md:shadow-[8px_8px_0_var(--color-foreground)] select-none"
+      style={{ rotateY, x, z, scale, opacity, zIndex }}
+      className="absolute inset-0 grid grid-cols-[1.15fr_0.85fr] sm:grid-cols-[1.2fr_1fr] items-center gap-2 sm:gap-6 overflow-hidden rounded-[1.25rem] sm:rounded-[1.75rem] md:rounded-[2rem] border-2 border-foreground bg-card p-3 sm:p-6 md:p-8 lg:p-10 shadow-[4px_4px_0_var(--color-foreground)] sm:shadow-[6px_6px_0_var(--color-foreground)] md:shadow-[8px_8px_0_var(--color-foreground)] select-none will-change-transform"
     >
       <div className="flex flex-col justify-center min-w-0">
-        <span className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-primary font-bold">{String(i + 1).padStart(2, "0")}</span>
-        <h3 className="mt-0.5 sm:mt-2 text-sm sm:text-xl md:text-2xl lg:text-3xl font-bold leading-tight line-clamp-2">{prog.t}</h3>
-        <ul className="mt-1 sm:mt-3 space-y-1 sm:space-y-2 md:mt-5">
+        <span className="font-display text-xl sm:text-3xl md:text-4xl lg:text-5xl text-primary font-bold">{String(i + 1).padStart(2, "0")}</span>
+        <h3 className="mt-0.5 sm:mt-2 text-xs sm:text-xl md:text-2xl lg:text-3xl font-bold leading-tight line-clamp-2">{prog.t}</h3>
+        <ul className="mt-1 sm:mt-3 space-y-0.5 sm:space-y-2 md:mt-5">
           {prog.s.map((s) => (
-            <li key={s} className="flex items-center gap-1.5 sm:gap-2.5 text-[11px] sm:text-xs md:text-sm font-semibold leading-snug">
+            <li key={s} className="flex items-center gap-1 sm:gap-2.5 text-[10px] sm:text-xs md:text-sm font-semibold leading-tight">
               <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 shrink-0 rounded-full bg-primary" />
               <span className="truncate">{s}</span>
             </li>
           ))}
         </ul>
       </div>
-      <div className="mx-auto flex h-full max-h-[140px] sm:max-h-[220px] md:max-h-[280px] w-full items-center justify-center">
+      <div className="mx-auto flex h-full max-h-[120px] sm:max-h-[220px] md:max-h-[280px] w-full items-center justify-center">
         {prog.img ? (
-          <div className="relative h-full max-h-[130px] sm:max-h-[200px] md:max-h-[260px] w-auto aspect-[3/4] overflow-hidden rounded-lg sm:rounded-xl md:rounded-2xl border-2 border-foreground bg-muted shadow-[3px_3px_0_var(--color-foreground)] sm:shadow-[5px_5px_0_var(--color-foreground)]">
+          <div className="relative h-full max-h-[115px] sm:max-h-[200px] md:max-h-[260px] w-auto aspect-[3/4] overflow-hidden rounded-lg sm:rounded-xl md:rounded-2xl border-2 border-foreground bg-muted shadow-[2px_2px_0_var(--color-foreground)] sm:shadow-[5px_5px_0_var(--color-foreground)]">
             <img
               src={prog.img}
               alt={prog.alt ?? prog.t}
@@ -683,7 +689,7 @@ function ProgramSlide({ p, i, n }: { p: MotionValue<number>; i: number; n: numbe
             />
           </div>
         ) : (
-          <div className="mx-auto flex max-h-[130px] sm:max-h-[200px] md:max-h-[260px] w-24 sm:w-32 md:w-44 items-center justify-center" style={{ filter: "drop-shadow(4px 4px 0 var(--color-accent))" }}>
+          <div className="mx-auto flex max-h-[115px] sm:max-h-[200px] md:max-h-[260px] w-20 sm:w-32 md:w-44 items-center justify-center" style={{ filter: "drop-shadow(3px 3px 0 var(--color-accent))" }}>
             {PROGRAM_ART[i]}
           </div>
         )}
@@ -697,7 +703,7 @@ function Programs() {
   const n = PROGRAMS.length;
   return (
     <section id="programs" ref={ref} className="relative w-full max-w-full box-border" style={{ height: `${n * 60}vh` }}>
-      <div className="sticky top-0 flex h-svh flex-col justify-center gap-3 sm:gap-6 px-4 sm:px-6 md:gap-8 md:px-10">
+      <div className="sticky top-0 flex h-svh flex-col justify-center gap-2 sm:gap-6 px-4 sm:px-6 md:gap-8 md:px-10">
         <ProgramsCartoons />
         <div className="relative z-10 mx-auto w-full max-w-5xl">
           <p className="eyebrow">Our Programs</p>
@@ -727,7 +733,7 @@ function Programs() {
             Our specialized services are organized into focused pathways to support each child's development.
           </ScrollReveal>
         </div>
-        <div className="relative mx-auto h-[32svh] sm:h-[42svh] md:h-[48svh] min-h-[210px] sm:min-h-[320px] max-h-[460px] w-full max-w-5xl [perspective:900px] md:[perspective:1200px]">
+        <div className="relative mx-auto h-[26svh] sm:h-[40svh] md:h-[48svh] min-h-[185px] sm:min-h-[300px] max-h-[460px] w-[calc(100%-80px)] max-w-[310px] sm:max-w-xl md:max-w-5xl [perspective:900px] md:[perspective:1200px]">
           {PROGRAMS.map((_, i) => <ProgramSlide key={i} p={p} i={i} n={n} />)}
         </div>
       </div>

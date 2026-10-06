@@ -96,21 +96,21 @@ export const ScrollReveal = ({
           }
         );
 
-        if (enableBlur) {
-          // Blur animation (calmer blur on mobile)
+        if (enableBlur && !isMobile) {
+          // Blur animation (preserved on desktop, skipped on mobile to prevent GPU scroll jitter)
           gsap.fromTo(
             wordElements,
-            { filter: `blur(${effectiveBlur}px)` },
+            { filter: `blur(${blurStrength}px)` },
             {
               ease: "none",
               filter: "blur(0px)",
-              stagger: isMobile ? 0.02 : 0.05,
+              stagger: 0.05,
               scrollTrigger: {
                 trigger: el,
                 scroller,
                 start: "top bottom-=20%",
                 end: wordAnimationEnd,
-                scrub: scrubMode,
+                scrub: true,
                 fastScrollEnd: true,
               },
             }
