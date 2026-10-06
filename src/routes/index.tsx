@@ -56,7 +56,7 @@ const PROGRAMS = [
   { t: "Parent Support", s: ["Parent Counseling & Guidance"] },
 ];
 const STAGES = ["Understand", "Support", "Develop", "Grow"];
-const NAV = [
+const NAV: [string, string][] = [
   ["About", "about"],
   ["Services", "services"],
   ["Programs", "programs"],
