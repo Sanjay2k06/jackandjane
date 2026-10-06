@@ -161,7 +161,57 @@
 .float-anim-7 { animation: float-gentle-7 9.8s ease-in-out infinite; }
 .float-anim-8 { animation: float-gentle-8 10.6s ease-in-out infinite; }
 
-@media (prefers-reduced-motion: reduce), (max-width: 767px) {
+/* Mobile: 40–50% reduced animation intensity (calmer movement distance & rotation) */
+@media (max-width: 767px) {
+  @keyframes float-gentle-1-m {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-6px) rotate(1.5deg); }
+  }
+  @keyframes float-gentle-2-m {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-7px) rotate(-1.8deg); }
+  }
+  @keyframes float-gentle-3-m {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-5px) rotate(1deg); }
+  }
+  @keyframes float-gentle-4-m {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-6px) rotate(-1.2deg); }
+  }
+  @keyframes float-gentle-5-m {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-5px) rotate(1.6deg); }
+  }
+  @keyframes float-gentle-6-m {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-7px) rotate(-1.8deg); }
+  }
+  @keyframes float-gentle-7-m {
+    0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+    50% { transform: translateY(-5px) translateX(2px) rotate(1.4deg); }
+  }
+  @keyframes float-gentle-8-m {
+    0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+    50% { transform: translateY(-7px) translateX(-2px) rotate(-1.6deg); }
+  }
+  @keyframes drift-m {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-6px) rotate(1.8deg); }
+  }
+
+  .float-anim-1 { animation: float-gentle-1-m 8s ease-in-out infinite; }
+  .float-anim-2 { animation: float-gentle-2-m 9.5s ease-in-out infinite; }
+  .float-anim-3 { animation: float-gentle-3-m 7.5s ease-in-out infinite; }
+  .float-anim-4 { animation: float-gentle-4-m 10s ease-in-out infinite; }
+  .float-anim-5 { animation: float-gentle-5-m 8.5s ease-in-out infinite; }
+  .float-anim-6 { animation: float-gentle-6-m 9s ease-in-out infinite; }
+  .float-anim-7 { animation: float-gentle-7-m 10.5s ease-in-out infinite; }
+  .float-anim-8 { animation: float-gentle-8-m 11s ease-in-out infinite; }
+  .drift { animation: drift-m 8s ease-in-out infinite; }
+}
+
+@media (prefers-reduced-motion: reduce) {
   .drift,
   .float-anim-1,
   .float-anim-2,
