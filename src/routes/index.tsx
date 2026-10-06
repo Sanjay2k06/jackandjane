@@ -136,10 +136,14 @@ function Index() {
   const reduce = useReducedMotion();
   useEffect(() => {
     if (reduce) return;
+    // On mobile / touch devices, native momentum scrolling is 120Hz/60Hz hardware accelerated.
+    // Disabling Lenis virtual loop on touch screens eliminates touch-scroll stutter and vibration completely!
+    if (window.innerWidth < 768 || window.matchMedia("(pointer: coarse)").matches) {
+      return;
+    }
     lenis = new Lenis({
       lerp: 0.08,
       smoothWheel: true,
-      syncTouch: false,
     });
     let id = 0;
     const raf = (t: number) => {
@@ -173,6 +177,7 @@ function Index() {
 
 /* ---------- Global ribbon ---------- */
 function Ribbon() {
+  const isMobile = useIsMobile();
   const { scrollYProgress } = useScroll();
   const len = useSpring(scrollYProgress, { stiffness: 80, damping: 25 });
   return (
@@ -190,7 +195,7 @@ function Ribbon() {
         strokeWidth={10}
         strokeLinecap="round"
         vectorEffect="non-scaling-stroke"
-        style={{ pathLength: len }}
+        style={{ pathLength: isMobile ? scrollYProgress : len }}
       />
     </svg>
   );
@@ -737,8 +742,8 @@ function Stage({ p, i }: { p: MotionValue<number>; i: number }) {
   const isMobile = useIsMobile();
   const d = useTransform(p, (v) => v * 3 - i);
   const opacity = useTransform(d, [-0.6, 0, 0.6], [0, 1, 0]);
-  const scale = useTransform(d, [-0.6, 0, 0.6], isMobile ? [0.85, 1, 1.12] : [0.7, 1, 1.25]);
-  const y = useTransform(d, [-0.6, 0, 0.6], isMobile ? [30, 0, -30] : [60, 0, -60]);
+  const scale = useTransform(d, [-0.6, 0, 0.6], isMobile ? [0.88, 1, 1.10] : [0.7, 1, 1.25]);
+  const y = useTransform(d, [-0.6, 0, 0.6], isMobile ? [25, 0, -25] : [60, 0, -60]);
   return (
     <motion.h3
       style={{ opacity, scale, y }}

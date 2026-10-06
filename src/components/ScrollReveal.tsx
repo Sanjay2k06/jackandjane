@@ -7,7 +7,10 @@ import "./ScrollReveal.css";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
-  ScrollTrigger.config({ ignoreMobileResize: true });
+  ScrollTrigger.config({
+    ignoreMobileResize: true,
+    autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
+  });
 }
 
 export interface ScrollRevealProps {
@@ -64,12 +67,13 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
 
     // Mobile: 40–50% reduced animation intensity to prevent scroll vibration/jitter
     const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-    const effectiveRotation = isMobile ? baseRotation * 0.5 : baseRotation;
-    const effectiveBlur = isMobile ? Math.min(1.5, blurStrength * 0.5) : blurStrength;
-    const effectiveOpacity = isMobile ? Math.max(0.3, baseOpacity) : baseOpacity;
+    const effectiveRotation = isMobile ? baseRotation * 0.4 : baseRotation;
+    const effectiveBlur = isMobile ? Math.min(1.0, blurStrength * 0.35) : blurStrength;
+    const effectiveOpacity = isMobile ? Math.max(0.4, baseOpacity) : baseOpacity;
+    const scrubMode = isMobile ? 0.4 : true;
 
     const ctx = gsap.context(() => {
-      // Rotation animation (50% gentler on mobile)
+      // Rotation animation (calmer on mobile)
       gsap.fromTo(
         el,
         { transformOrigin: "0% 50%", rotate: effectiveRotation },
@@ -81,7 +85,8 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
             scroller,
             start: "top bottom-=10%",
             end: rotationEnd,
-            scrub: true,
+            scrub: scrubMode,
+            fastScrollEnd: true,
           },
         }
       );
@@ -95,32 +100,34 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
           {
             ease: "none",
             opacity: 1,
-            stagger: isMobile ? 0.03 : 0.05,
+            stagger: isMobile ? 0.02 : 0.05,
             scrollTrigger: {
               trigger: el,
               scroller,
               start: "top bottom-=20%",
               end: wordAnimationEnd,
-              scrub: true,
+              scrub: scrubMode,
+              fastScrollEnd: true,
             },
           }
         );
 
         if (enableBlur) {
-          // Blur animation (50% reduced blur strength on mobile)
+          // Blur animation (calmer blur on mobile)
           gsap.fromTo(
             wordElements,
             { filter: `blur(${effectiveBlur}px)` },
             {
               ease: "none",
               filter: "blur(0px)",
-              stagger: isMobile ? 0.03 : 0.05,
+              stagger: isMobile ? 0.02 : 0.05,
               scrollTrigger: {
                 trigger: el,
                 scroller,
                 start: "top bottom-=20%",
                 end: wordAnimationEnd,
-                scrub: true,
+                scrub: scrubMode,
+                fastScrollEnd: true,
               },
             }
           );

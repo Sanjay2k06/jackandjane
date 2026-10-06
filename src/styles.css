@@ -152,6 +152,21 @@
   50% { transform: translateY(-16px) translateX(-5px) rotate(-3.5deg); }
 }
 
+.float-anim-1,
+.float-anim-2,
+.float-anim-3,
+.float-anim-4,
+.float-anim-5,
+.float-anim-6,
+.float-anim-7,
+.float-anim-8,
+.drift {
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
 .float-anim-1 { animation: float-gentle-1 7.2s ease-in-out infinite; }
 .float-anim-2 { animation: float-gentle-2 8.8s ease-in-out infinite; }
 .float-anim-3 { animation: float-gentle-3 6.6s ease-in-out infinite; }
@@ -164,40 +179,40 @@
 /* Mobile: 40–50% reduced animation intensity (calmer movement distance & rotation) */
 @media (max-width: 767px) {
   @keyframes float-gentle-1-m {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-6px) rotate(1.5deg); }
+    0%, 100% { transform: translate3d(0, 0px, 0) rotate(0deg); }
+    50% { transform: translate3d(0, -5px, 0) rotate(1.2deg); }
   }
   @keyframes float-gentle-2-m {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-7px) rotate(-1.8deg); }
+    0%, 100% { transform: translate3d(0, 0px, 0) rotate(0deg); }
+    50% { transform: translate3d(0, -6px, 0) rotate(-1.4deg); }
   }
   @keyframes float-gentle-3-m {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-5px) rotate(1deg); }
+    0%, 100% { transform: translate3d(0, 0px, 0) rotate(0deg); }
+    50% { transform: translate3d(0, -4px, 0) rotate(0.8deg); }
   }
   @keyframes float-gentle-4-m {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-6px) rotate(-1.2deg); }
+    0%, 100% { transform: translate3d(0, 0px, 0) rotate(0deg); }
+    50% { transform: translate3d(0, -5px, 0) rotate(-1.0deg); }
   }
   @keyframes float-gentle-5-m {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-5px) rotate(1.6deg); }
+    0%, 100% { transform: translate3d(0, 0px, 0) rotate(0deg); }
+    50% { transform: translate3d(0, -4px, 0) rotate(1.2deg); }
   }
   @keyframes float-gentle-6-m {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-7px) rotate(-1.8deg); }
+    0%, 100% { transform: translate3d(0, 0px, 0) rotate(0deg); }
+    50% { transform: translate3d(0, -6px, 0) rotate(-1.4deg); }
   }
   @keyframes float-gentle-7-m {
-    0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
-    50% { transform: translateY(-5px) translateX(2px) rotate(1.4deg); }
+    0%, 100% { transform: translate3d(0, 0px, 0) rotate(0deg); }
+    50% { transform: translate3d(2px, -4px, 0) rotate(1.0deg); }
   }
   @keyframes float-gentle-8-m {
-    0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
-    50% { transform: translateY(-7px) translateX(-2px) rotate(-1.6deg); }
+    0%, 100% { transform: translate3d(0, 0px, 0) rotate(0deg); }
+    50% { transform: translate3d(-2px, -5px, 0) rotate(-1.2deg); }
   }
   @keyframes drift-m {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-6px) rotate(1.8deg); }
+    0%, 100% { transform: translate3d(0, 0px, 0) rotate(0deg); }
+    50% { transform: translate3d(0, -5px, 0) rotate(1.4deg); }
   }
 
   .float-anim-1 { animation: float-gentle-1-m 8s ease-in-out infinite; }
