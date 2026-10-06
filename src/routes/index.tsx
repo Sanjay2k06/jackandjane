@@ -228,9 +228,21 @@ function Nav() {
           <button
             onClick={() => setOpen((o) => !o)}
             aria-expanded={open}
-            className="btn border border-foreground/20 bg-card/80 backdrop-blur text-[11px] sm:text-sm px-2.5 py-1.5 sm:px-4 sm:py-2.5"
+            aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+            className="btn border-2 border-foreground bg-card/90 backdrop-blur p-2 sm:px-3 sm:py-2 flex items-center justify-center text-foreground hover:bg-card shadow-[2px_2px_0_var(--color-foreground)] transition-all active:translate-x-[1px] active:translate-y-[1px]"
           >
-            {open ? "CLOSE" : "MENU"}
+            {open ? (
+              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="18" x2="18" y2="6" />
+              </svg>
+            ) : (
+              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+              </svg>
+            )}
           </button>
         </div>
       </div>
@@ -366,10 +378,17 @@ function Hero() {
               Admissions Open — Get Started
             </a>
           </div>
-          <div className="mt-8 sm:mt-10 flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-2 text-xs sm:text-sm font-semibold">
-            <span>Palavakkam · Neelankarai</span>
-            <span className="text-muted-foreground">Hours: {HOURS}</span>
-            <a href={TEL} className="underline decoration-primary decoration-2 underline-offset-4">{PHONE}</a>
+          <div className="mt-8 sm:mt-10 flex flex-wrap items-center gap-x-4 sm:gap-x-6 gap-y-2.5 text-sm sm:text-base font-bold text-foreground">
+            <span className="font-extrabold text-foreground">Palavakkam · Neelankarai</span>
+            <span className="font-bold text-foreground">
+              Hours: <strong className="font-extrabold text-foreground">{HOURS}</strong>
+            </span>
+            <a
+              href={TEL}
+              className="font-extrabold text-primary underline decoration-primary decoration-2 underline-offset-4 hover:opacity-85 transition-opacity"
+            >
+              {PHONE}
+            </a>
           </div>
         </div>
         <div className="relative mx-auto flex w-full max-w-md sm:max-w-lg items-center justify-center lg:max-w-xl">
@@ -745,7 +764,9 @@ function Contact() {
       <motion.div {...seq(0)} className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 md:px-10">
         <h2 className="text-3xl sm:text-4xl md:text-6xl font-semibold">Get In Touch</h2>
         <a href={TEL} className="mt-4 sm:mt-6 block font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-primary break-all sm:break-normal">{PHONE}</a>
-        <p className="mt-3 sm:mt-4 text-base sm:text-lg font-semibold">Palavakkam · Neelankarai <span className="text-muted-foreground">— {HOURS}</span></p>
+        <p className="mt-3 sm:mt-4 text-base sm:text-lg font-bold text-foreground">
+          Palavakkam · Neelankarai <span className="font-extrabold text-foreground">— Hours: {HOURS}</span>
+        </p>
       </motion.div>
       <motion.footer {...seq(1)} className="relative z-10 mx-auto mt-16 sm:mt-20 flex max-w-6xl flex-col sm:flex-row flex-wrap items-start sm:items-end justify-between gap-6 border-t-2 border-foreground px-4 sm:px-6 md:px-10 py-8 sm:py-10 text-xs sm:text-sm">
         <div className="flex items-center gap-3">
@@ -767,7 +788,7 @@ function Contact() {
             <p className="text-[0.6rem] sm:text-[0.65rem] font-extrabold tracking-[0.2em] text-muted-foreground">DEVELOPMENTAL CENTRE</p>
           </div>
         </div>
-        <p className="font-semibold text-muted-foreground sm:text-foreground">Palavakkam · Neelankarai · {HOURS} · {PHONE}</p>
+        <p className="font-bold text-foreground">Palavakkam · Neelankarai · Hours: {HOURS} · {PHONE}</p>
         <p className="w-full text-muted-foreground">© {new Date().getFullYear()} Jack & Jane Developmental Centre</p>
       </motion.footer>
     </section>
