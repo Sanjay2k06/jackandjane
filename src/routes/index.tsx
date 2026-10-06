@@ -125,6 +125,13 @@ function Index() {
   const reduce = useReducedMotion();
   useEffect(() => {
     if (reduce) return;
+    // On mobile screens (< 768px) and touch devices, use native inertia scrolling.
+    // Lenis lerp touch interception conflicts with iOS/Android inertia and causes scroll jitter.
+    const isMobile =
+      typeof window !== "undefined" &&
+      (window.innerWidth < 768 || window.matchMedia("(pointer: coarse)").matches);
+    if (isMobile) return;
+
     lenis = new Lenis({ lerp: 0.09 });
     let id = 0;
     const raf = (t: number) => {
@@ -162,7 +169,7 @@ function Ribbon() {
   const len = useSpring(scrollYProgress, { stiffness: 80, damping: 25 });
   return (
     <svg
-      className="pointer-events-none absolute inset-0 z-[1] h-full w-full"
+      className="hidden md:block pointer-events-none absolute inset-0 z-[1] h-full w-full"
       viewBox="0 0 100 1000"
       preserveAspectRatio="none"
       aria-hidden
@@ -315,7 +322,7 @@ function Float({ m, depth, className, children }: { m: ReturnType<typeof useMous
   const x = useTransform(m.x, (v) => v * depth);
   const y = useTransform(m.y, (v) => v * depth);
   return (
-    <motion.div style={{ x, y }} className={`pointer-events-none absolute ${className}`}>
+    <motion.div style={{ x, y }} className={`hidden md:block pointer-events-none absolute ${className}`}>
       <div className="drift" style={{ animationDelay: `${depth % 5}s` }}>{children}</div>
     </motion.div>
   );

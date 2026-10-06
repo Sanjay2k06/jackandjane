@@ -7,6 +7,7 @@ import "./ScrollReveal.css";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize: true });
 }
 
 export interface ScrollRevealProps {
@@ -56,13 +57,26 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
     const el = containerRef.current;
     if (!el) return;
 
+    // Check if on mobile view (< 768px)
+    // On mobile screens, disable continuous scrub and blur filters during scroll
+    // to keep mobile scrolling 100% natural, smooth, and free of jitter/vibration.
+    const isMobile = window.innerWidth < 768;
+    if (isMobile) {
+      const words = el.querySelectorAll(".word");
+      words.forEach((w) => {
+        (w as HTMLElement).style.opacity = "1";
+        (w as HTMLElement).style.filter = "none";
+        (w as HTMLElement).style.transform = "none";
+      });
+      return;
+    }
+
     const scroller =
       scrollContainerRef && scrollContainerRef.current
         ? scrollContainerRef.current
         : window;
 
     // Use gsap.context() for precise component-scoped cleanup
-    // without killing ScrollTriggers of other components or page sections
     const ctx = gsap.context(() => {
       gsap.fromTo(
         el,
@@ -84,7 +98,7 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
       if (wordElements.length > 0) {
         gsap.fromTo(
           wordElements,
-          { opacity: baseOpacity, willChange: "opacity, filter" },
+          { opacity: baseOpacity },
           {
             ease: "none",
             opacity: 1,

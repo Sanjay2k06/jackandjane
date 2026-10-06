@@ -146,7 +146,7 @@
 .float-anim-7 { animation: float-gentle-7 9.8s ease-in-out infinite; }
 .float-anim-8 { animation: float-gentle-8 10.6s ease-in-out infinite; }
 
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce), (max-width: 767px) {
   .drift,
   .float-anim-1,
   .float-anim-2,

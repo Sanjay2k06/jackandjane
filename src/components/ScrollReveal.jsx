@@ -5,6 +5,7 @@ import './ScrollReveal.css';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize: true });
 }
 
 export const ScrollReveal = ({
@@ -40,6 +41,20 @@ export const ScrollReveal = ({
     const el = containerRef.current;
     if (!el) return;
 
+    // Check if on mobile view (< 768px)
+    // On mobile screens, disable continuous scrub and blur filters during scroll
+    // to keep mobile scrolling 100% natural, smooth, and free of jitter/vibration.
+    const isMobile = window.innerWidth < 768;
+    if (isMobile) {
+      const words = el.querySelectorAll(".word");
+      words.forEach((w) => {
+        w.style.opacity = "1";
+        w.style.filter = "none";
+        w.style.transform = "none";
+      });
+      return;
+    }
+
     const scroller =
       scrollContainerRef && scrollContainerRef.current
         ? scrollContainerRef.current
@@ -67,7 +82,7 @@ export const ScrollReveal = ({
       if (wordElements.length > 0) {
         gsap.fromTo(
           wordElements,
-          { opacity: baseOpacity, willChange: "opacity, filter" },
+          { opacity: baseOpacity },
           {
             ease: "none",
             opacity: 1,

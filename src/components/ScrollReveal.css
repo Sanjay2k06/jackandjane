@@ -11,5 +11,10 @@
 
 .scroll-reveal-text .word {
   display: inline-block;
-  will-change: opacity, filter, transform;
+}
+
+@media (min-width: 768px) {
+  .scroll-reveal-text .word {
+    will-change: opacity, filter, transform;
+  }
 }
